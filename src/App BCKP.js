@@ -14,10 +14,36 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 function App() {
 
   const [search, setSearch] = useState("");
-  const [getData, setGetData] = useState([]);
 
   useEffect(() => {
-  }, [getData])
+    // axios.get('https://www.theguardian.com/uk')
+    //   .then(res => {
+    //     const persons = res.data;
+    //     const yaya = cheerio.load(persons);
+    //     console.log(yaya);;
+    //   })
+
+    const url = 'http://localhost:8000/results/web';
+
+
+    axios(url)
+      .then(response => {
+        const html = response.data
+        // const yaa = cheerio.load(html)
+        console.log(html);
+
+        // $('.fc-item__title', html).each(function () { //<-- cannot be a function expression
+        //     const title = $(this).text()
+        //     const url = $(this).find('a').attr('href')
+        //     articles.push({
+        //         title,
+        //         url
+        //     })
+        // })
+        // console.log('data', yaa);
+        // res.json(articles)
+      }).catch(err => console.log('error cuk', err))
+  }, [])
 
   const searchingData = () => {
     console.log(search);
@@ -26,8 +52,8 @@ function App() {
     axios(url)
       .then(response => {
         const html = response.data
+        // const yaa = cheerio.load(html)
         console.log('datanya', html);
-        setGetData(html);
       })
   }
 
@@ -36,27 +62,6 @@ function App() {
     <>
       <input value={search} onChange={e => setSearch(e.target.value)} type="text" placeholder="Type here" className="input input-bordered input-primary w-full max-w-xs"></input>
       <button onClick={() => searchingData()} className="btn btn-active btn-primary">Button</button>
-
-      {getData.length > 0 && (
-        <div className="overflow-x-auto">
-          <table className="table w-full">
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              {getData.map((val, idx) => (
-                <tr>
-                  <td>{idx + 1}</td>
-                  <td>{val.title}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
     </>
   );
 }
