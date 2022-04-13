@@ -21,7 +21,8 @@ function App() {
 
   const searchingData = () => {
     console.log(search);
-    const url = 'http://localhost:8000/results/' + search;
+    // const url = 'http://localhost:8000/results/' + search;
+    const url = 'http://localhost:8000/jobseeker/' + search;
 
     axios(url)
       .then(response => {
@@ -43,14 +44,21 @@ function App() {
             <thead>
               <tr>
                 <th>No</th>
-                <th>Name</th>
+                <th>Logo</th>
+                <th>Job</th>
+                <th>Company</th>
+                <th>Location</th>
               </tr>
             </thead>
             <tbody>
               {getData.map((val, idx) => (
-                <tr>
+                <tr key={idx}>
                   <td>{idx + 1}</td>
-                  <td>{val.title}</td>
+                  <td><img src={val.logo} alt="" srcset="" /></td>
+                  <td>{val.job}</td>
+                  <td>{val.company}</td>
+                  <td>{val.location}</td>
+                  <td><a href={val.detail}><button onClick={() => searchingData()} className="btn btn-active btn-primary">Tertarik</button></a></td>
                 </tr>
               ))}
             </tbody>

@@ -1,0 +1,19 @@
+.x-btn {
+    @apply bg-transparent;
+    @apply rounded-full;
+    @apply px-2;
+    @apply m-0;
+    @apply h-1;
+    @apply border-2;
+    @apply border-[#6171FE];
+}
+
+.x-btn:hover {
+    @apply bg-[#6171FE];
+    @apply border-[#6171FE];
+    @apply rounded-full;
+    @apply px-2;
+    @apply m-0;
+    @apply h-1;
+    @apply border-2;
+  }
