@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Home from './Home';
 import Login from './Login';
 import Course from './Course';
 import CourseDetail from './CourseDetail';
@@ -14,7 +15,7 @@ ReactDOM.render(
   <BrowserRouter>
     {/* <Course /> */}
     <Routes>
-        <Route index element={<App />} />
+        <Route index element={<Home />} />
         <Route path="login" element={<Login />}></Route>
         <Route path="course" element={<Course />} />
         <Route path="detail" element={<CourseDetail />} />

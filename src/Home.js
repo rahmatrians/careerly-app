@@ -44,7 +44,7 @@ function Home() {
                     </figure>
                   </div>
                   <div className="card-body gap-y-5">
-                    <h2 className="text-3xl font-normal text-[#3F427B]">Seminar / <br /> Workshop</h2>
+                    <h2 className="text-3xl font-normal text-[#3F427B]">Online Course / <br /> Bootcamp</h2>
                     <div className="grid justify-items-end">
                       <button className="group btn btn-sm btn-primary x-btn"><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-3 stroke-[#6171FE] group-hover:stroke-white" viewBox="0 0 24 24" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -82,7 +82,7 @@ function Home() {
                     </figure>
                   </div>
                   <div className="card-body gap-y-5">
-                    <h2 className="text-3xl font-normal text-[#3F427B]">Seminar / <br /> Workshop</h2>
+                    <h2 className="text-3xl font-normal text-[#3F427B]">Lowongan Kerja / <br />Magang</h2>
                     <div className="grid justify-items-end">
                       <button className="group btn btn-sm btn-primary x-btn"><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-3 stroke-[#6171FE] group-hover:stroke-white" viewBox="0 0 24 24" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
