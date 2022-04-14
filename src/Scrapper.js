@@ -12,6 +12,12 @@ app.get('/', function (req, res) {
     res.json('This is my webscraper')
 })
 
+
+app.post('/detail', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({dataku:"ini data aja sih"}));
+})
+
 app.get('/results/:key', (req, res) => {
     // console.log(req.params.key);
     // res.end(req.params.key);

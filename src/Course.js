@@ -2,14 +2,39 @@ import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
 
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 function Course() {
+  let nav = useNavigate();
   const [search, setSearch] = useState("");
   const [getData, setGetData] = useState([]);
   
   useEffect(() => {
   }, [getData])
+
+
+  const detailPage = async (data) => {
+console.log('detail cui',data);
+    // fetch("http://localhost:8000/detail", {
+    //   method: "POST",
+    //   headers: {'Content-Type': 'application/json'}, 
+    //   body: JSON.stringify(data)
+    // }).then(res => {
+    //   console.log("Request complete! response:", res);
+    // });
+
+    await axios.post('http://localhost:8000/detail', {
+      data: data
+    })
+    .then((response) => {
+      console.log(response.data);
+      nav({pathname:`/detail`, state:data});
+    }, (error) => {
+      console.log(error);
+    });
+    
+  }
 
 
   const searchingData = () => {
@@ -25,17 +50,14 @@ function Course() {
       })
   }
   
-   let dataKu = [
-      {nama : 'react js aja', harga : 'Rp. 400.000'},
-      {nama : 'flutter nih', harga : 'Rp. 220.000'},
-      {nama : 'react native ', harga : 'Rp. 220.000'},
-      {nama : 'vue js', harga : 'Rp. 220.000'},
-      {nama : 'svelte', harga : 'Rp. 220.000'},
-      {nama : 'node js', harga : 'Rp. 220.000'},
-    ];
-
-  console.log(dataKu);
-
+  //  let dataKu = [
+  //     {nama : 'react js aja', harga : 'Rp. 400.000'},
+  //     {nama : 'flutter nih', harga : 'Rp. 220.000'},
+  //     {nama : 'react native ', harga : 'Rp. 220.000'},
+  //     {nama : 'vue js', harga : 'Rp. 220.000'},
+  //     {nama : 'svelte', harga : 'Rp. 220.000'},
+  //     {nama : 'node js', harga : 'Rp. 220.000'},
+  //   ];
 
 
 
@@ -80,15 +102,15 @@ function Course() {
   {getData.map((val, idx) => (
   <div key={idx} className=" card bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
                     <div className="grid justify-items-start">
-                      <figure className="px-10 pt-10">
-                        <img src={require('./images/course.jpg')} alt="Shoes" className="rounded-xl max-h-[150px]" />
+                      <figure className="px-10 pt-10  mx-auto">
+                        <img src={val.logo} alt="Shoes" className="rounded-xl max-h-[150px]" />
                       </figure>
                     </div>
                     <div className="card-body">
                       <h2 className="text-xl font-bold text-[#3F427B]">{val.job}</h2>
                       <p className="text-lg text-[#3F427B]">{val.location}</p>
                       <div className="card-actions flex mt-12">
-                      <button className="btn btn-primary w-full self-end font-bold">Lihat</button>
+                      <button className="btn btn-primary w-full self-end font-bold" onClick={() => detailPage(val.detail)}>Lihat</button>
                       </div>
                       </div>
                     </div>
