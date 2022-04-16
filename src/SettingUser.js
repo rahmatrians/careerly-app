@@ -63,7 +63,7 @@ function SettingUser() {
                   </td>
                 </tr>
                 <tr>
-                  <td className="mb-5">
+                  <td >
                     Tangerang Selatan
                   </td>
                   <td>
