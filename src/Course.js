@@ -54,7 +54,7 @@ function Course() {
         setGetData(html);
       })
   }
-  
+
   //  let dataKu = [
   //     {nama : 'react js aja', harga : 'Rp. 400.000'},
   //     {nama : 'flutter nih', harga : 'Rp. 220.000'},
@@ -66,7 +66,7 @@ function Course() {
 
 
 
- return(
+  return (
     <>
       <section className="fixed z-50 top-0 left-0 right-0">
         <div className="navbar bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.07)]">
@@ -124,14 +124,14 @@ function Course() {
                       </div>
                     </div>
                     ))}
-                
-                </div>
+              
           </div>
+        </div>
 
       </section>
-     
+
     </>
- );
+  );
 }
 
 export default Course;
