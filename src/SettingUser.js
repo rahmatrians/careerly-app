@@ -1,0 +1,79 @@
+import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import { BeakerIcon } from '@heroicons/react/solid';
+import './CustomButton.css';
+
+
+function SettingUser() {
+  useEffect(() => {
+  }, [])
+
+  return (
+    <>
+      <section className="fixed z-50 top-0 left-0 right-0">
+        <div className="navbar bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.07)]">
+          <div className="container mx-auto">
+            <div className="flex-1">
+              <a className="btn btn-ghost normal-case text-xl font-bold">Careerly</a>
+            </div>
+            <div className="flex-none">
+              <ul className="menu menu-horizontal p-0">
+                <li><a>Home</a></li>
+                <li><a>Kategori</a></li>
+                <li><a>Blog</a></li>
+                <li><a>Tentang Kami</a></li>
+                <li><a>Hi, Ardi!
+                  <div className="avatar">
+                    <div className="w-12 rounded-full">
+                      <img src="https://api.lorem.space/image/face?hash=92310" />
+                    </div>
+                  </div>
+                </a> </li>
+              </ul>
+            </div>
+          </div>
+        </div> {/* end of top bar */}
+      </section>
+
+      <section>
+        <div className="container my-40 mx-20 mr-20 ">
+          <div className="flex flex-row pl-10 pt-10 pr-10 mb-20 justify-center">
+            <img src="https://api.lorem.space/image/face?hash=92310" className="profilepic w-24 rounded-full" />
+            <div className="flex flex-col justify-center">
+              <span className="text-lg font-bold px-10 text-3xl font-normal">Fahmi Ardi Pratama</span>
+              <span className="text-lg px-10 mt-3 font-bold text-xl">fahamiardi@gmail.com</span>
+            </div>
+            <div className="flex row ml-60 mt-10">
+              <button class="btn btn-md  md:btn-md btn-primary">Wishlist</button>
+              <button class="ml-5 btn btn-md  md:btn-md btn-secondary">Logout</button>
+            </div>
+          </div>
+          <div class="card mx-auto w-3/4 bg-base-100 shadow-xl">
+            <div class="card-body">
+              <div className="grid gap-x-8 gap-y-4 grid-cols-3">
+                <h2 class="card-title">Kota Tinggal</h2>
+                <h2 class="card-title">Tanggal Lahir</h2>
+                <h2 class="card-title">Status Pendidikan</h2>
+                <p>Tangerang Selatan</p>
+                <p>12 April 2001</p>
+                <p>SMA</p>
+                <h2 class="card-title">Jenis Kelamin</h2>
+                <h2 class="card-title">No. Handphone</h2>
+                <h2 class="card-title"></h2>
+                <p>Laki-Laki</p>
+                <p>0821 7880 2191</p>
+                <div class="card-actions justify-end">
+                  <button class="btn btn-outline btn-primary">Ubah Profil</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </>
+  );
+}
+
+
+export default SettingUser
