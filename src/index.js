@@ -6,6 +6,9 @@ import Home from './Home';
 import Login from './Login';
 import Course from './Course';
 import CourseDetail from './CourseDetail';
+import SeminarDetail from './SeminarDetail';
+import DetailBootcamp from './DetailBootcamp';
+import DetailMagang from './DetailMagang';
 import reportWebVitals from './reportWebVitals';
 
 import {   BrowserRouter, Routes, Route } from "react-router-dom";
@@ -19,6 +22,9 @@ ReactDOM.render(
         <Route path="login" element={<Login />}></Route>
         <Route path="course" element={<Course />} />
         <Route path="detail" element={<CourseDetail />} />
+        <Route path="SeminarDetail" element={<SeminarDetail />} />
+        <Route path="DetailBootcamp" element={<DetailBootcamp />} />
+        <Route path="DetailMagang" element={<DetailMagang />} />
           {/* <Route path=":teamId" element={<Team />} /> */}
           {/* <Route index element={<LeagueStandings />} /> */}
     </Routes>
