@@ -5,7 +5,7 @@ import './CustomButton.css';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-function Course() {
+function Wishlist() {
   let nav = useNavigate();
   const [search, setSearch] = useState("");
   const [getData, setGetData] = useState([]);
@@ -15,36 +15,14 @@ function Course() {
  } 
   
   useEffect(() => {
+    searchingData();
   }, [getData])
 
 
-  const detailPage = async () => {
-// console.log('detail cui',data);
-    // fetch("http://localhost:8000/detail", {
-    //   method: "POST",
-    //   headers: {'Content-Type': 'application/json'}, 
-    //   body: JSON.stringify(data)
-    // }).then(res => {
-    //   console.log("Request complete! response:", res);
-    // });
 
-
-    await axios.post('http://localhost:8000/detail', {
-      data: 'data'
-    })
-    .then((response) => {
-      // console.log(response.data);
-      nav({pathname:`/detail`, state:response});
-    }, (error) => {
-      console.log(error);
-    });
-    
-  }
-
-
-  const searchingData = () => {
+  const searchingData = async () => {
     console.log(search);
-    const url = 'http://localhost:8000/results/' + search;
+    const url = 'http://localhost:8000/results/mobile';
     // const url = 'http://localhost:8000/jobseeker/' + search;
 
     axios(url)
@@ -87,17 +65,19 @@ function Course() {
       </section>
 
       <section>
-        <div className=" mt-40">
-        <h1 className="text-center text-3xl font-normal">Temukan Kelas atau Bootcamp impianmu</h1>
-        <div className="form-control mt-12 bg-white self-center w-3/6 mx-auto drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] p-4 h-4/6 rounded-lg">
-          <div className="input-group">
-          <input value={search} onChange={e => setSearch(e.target.value)}  type="text" placeholder="Cari Kelas impianmu..." className="input input-bordered input-primary w-full"/>
-            <button onClick={() => searchingData()}  className="btn btn-square btn-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-            </button>
-          </div>
+        <div className=" mt-40 container mx-auto">
+        <h1 className="text-3xl font-bold">Wishlist</h1>
         </div>
-        </div>
+      </section>
+
+      <section>
+      <div class="container mx-auto mt-16">
+      <div class="tabs w-full">
+  <a class="tab tab-bordered pb-10 px-24 tab-active">Online Course / Bootcamp</a> 
+  <a class="tab tab-bordered pb-10 px-24">Seminar / Workshop</a> 
+  <a class="tab tab-bordered pb-10 px-24">Lowongan Kerja / Magang</a>
+</div>
+</div>
       </section>
 
 
@@ -134,4 +114,4 @@ function Course() {
  );
 }
 
-export default Course;
+export default Wishlist;

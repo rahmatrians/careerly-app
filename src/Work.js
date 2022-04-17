@@ -5,7 +5,7 @@ import './CustomButton.css';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-function Course() {
+function Work() {
   let nav = useNavigate();
   const [search, setSearch] = useState("");
   const [getData, setGetData] = useState([]);
@@ -44,8 +44,8 @@ function Course() {
 
   const searchingData = () => {
     console.log(search);
-    const url = 'http://localhost:8000/results/' + search;
-    // const url = 'http://localhost:8000/jobseeker/' + search;
+    // const url = 'http://localhost:8000/results/' + search;
+    const url = 'http://localhost:8000/jobseeker/' + search;
 
     axios(url)
       .then(response => {
@@ -88,7 +88,7 @@ function Course() {
 
       <section>
         <div className=" mt-40">
-        <h1 className="text-center text-3xl font-normal">Temukan Kelas atau Bootcamp impianmu</h1>
+        <h1 className="text-center text-3xl font-normal">Temukan Pekerjaan impianmu</h1>
         <div className="form-control mt-12 bg-white self-center w-3/6 mx-auto drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] p-4 h-4/6 rounded-lg">
           <div className="input-group">
           <input value={search} onChange={e => setSearch(e.target.value)}  type="text" placeholder="Cari Kelas impianmu..." className="input input-bordered input-primary w-full"/>
@@ -109,14 +109,14 @@ function Course() {
                   <div key={idx} className=" card bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
                     <div className="grid justify-items-start">
                       <figure className="px-10 pt-10  mx-auto">
-                        <img src={'https://buildwithangga.com'+val.image} alt="Shoes" className="rounded-xl max-h-[150px]" />
+                        <img src={val.logo} alt="Shoes" className="rounded-xl max-h-[150px]" />
                       </figure>
                     </div>
                     <div className="card-body">
-                      <h2 className="text-xl font-bold text-[#3F427B]">{val.title}</h2>
-                      <p className="text-lg text-[#3F427B]">{val.harga}</p>
+                      <h2 className="text-xl font-bold text-[#3F427B]">{val.job}</h2>
+                      <p className="text-lg text-[#3F427B]">{val.location}</p>
                       <div className="card-actions flex mt-12">
-                      <Link to="/detail" state={val.url} className="link  btn btn-primary w-full self-end font-bold no-underline">
+                      <Link to="/detail" state={val.detail} className="link  btn btn-primary w-full self-end font-bold no-underline">
                       Lihat
                       {/* <button className="btn btn-primary w-full self-end font-bold" onClick={() => detailPage()}>Lihat</button> */}
                         </Link>
@@ -134,4 +134,4 @@ function Course() {
  );
 }
 
-export default Course;
+export default Work;

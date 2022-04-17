@@ -7,6 +7,10 @@ import Login from './Login';
 import Course from './Course';
 import CourseDetail from './CourseDetail';
 import reportWebVitals from './reportWebVitals';
+import Seminar from './Seminar';
+import Work from './Work';
+import Wishlist from './Wishlist';
+import Dashboard from './Dashboard';
 
 import {   BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -19,6 +23,10 @@ ReactDOM.render(
         <Route path="login" element={<Login />}></Route>
         <Route path="course" element={<Course />} />
         <Route path="detail" element={<CourseDetail />} />
+        <Route path="seminar" element={<Seminar />} />
+        <Route path="work" element={<Work />} />
+        <Route path="wishlist" element={<Wishlist />} />
+        <Route path="dashboard" element={<Dashboard />} />
           {/* <Route path=":teamId" element={<Team />} /> */}
           {/* <Route index element={<LeagueStandings />} /> */}
     </Routes>

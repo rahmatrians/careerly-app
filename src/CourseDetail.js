@@ -11,9 +11,28 @@ function CourseDetail() {
   
   useEffect(() => {
     // console.log('cek data lur', params.state.key);
-    console.log(location," useLocation Hook");
+    console.log(location.state," useLocation Hook");
   }, [])
-  // console.log(props, " props");
+  
+  
+  const testAja = async () => {
+    await axios.post('http://localhost:8000/jobs/detail', {
+      data: location.state
+    })
+    // axios({
+    //   method: 'post',
+    //   url: 'http://localhost:8000/jobs/detail',
+    //   data: {
+    //     firstName: 'Finn',
+    //     lastName: 'Williams'
+    //   }
+    // })
+    .then((response) => {
+      console.log('test',response.data);
+    }, (error) => {
+      console.log(error);
+    });
+  }
   
 
 
@@ -24,6 +43,7 @@ function CourseDetail() {
       <section>
       <div className="container mx-auto mt-32">
             <div className="grid grid-cols-3 gap-x-12 gap-y-20 mx-28">
+              <button className="btn btn-primary" onClick={() => testAja()}>Test</button>
             {/* <p>{location.state.key}</p> */}
   {/* {params.state.key != '' &&(<p>{params.state.key}</p>)} */}
                 

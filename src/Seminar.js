@@ -5,21 +5,17 @@ import './CustomButton.css';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-function Course() {
+function Seminar() {
   let nav = useNavigate();
   const [search, setSearch] = useState("");
   const [getData, setGetData] = useState([]);
-  
-  let test = {
-    data: { id: "1t4", title: " How to pass state in react-router-dom", tag: ["reactjs", "react-router-dom"]}
- } 
   
   useEffect(() => {
   }, [getData])
 
 
-  const detailPage = async () => {
-// console.log('detail cui',data);
+  const detailPage = async (data) => {
+console.log('detail cui',data);
     // fetch("http://localhost:8000/detail", {
     //   method: "POST",
     //   headers: {'Content-Type': 'application/json'}, 
@@ -28,13 +24,12 @@ function Course() {
     //   console.log("Request complete! response:", res);
     // });
 
-
     await axios.post('http://localhost:8000/detail', {
-      data: 'data'
+      data: data
     })
     .then((response) => {
-      // console.log(response.data);
-      nav({pathname:`/detail`, state:response});
+      console.log(response.data);
+      nav({pathname:`/detail`, state:data});
     }, (error) => {
       console.log(error);
     });
@@ -44,8 +39,7 @@ function Course() {
 
   const searchingData = () => {
     console.log(search);
-    const url = 'http://localhost:8000/results/' + search;
-    // const url = 'http://localhost:8000/jobseeker/' + search;
+    const url = 'http://localhost:8000/seminar/'+search;
 
     axios(url)
       .then(response => {
@@ -54,16 +48,6 @@ function Course() {
         setGetData(html);
       })
   }
-  
-  //  let dataKu = [
-  //     {nama : 'react js aja', harga : 'Rp. 400.000'},
-  //     {nama : 'flutter nih', harga : 'Rp. 220.000'},
-  //     {nama : 'react native ', harga : 'Rp. 220.000'},
-  //     {nama : 'vue js', harga : 'Rp. 220.000'},
-  //     {nama : 'svelte', harga : 'Rp. 220.000'},
-  //     {nama : 'node js', harga : 'Rp. 220.000'},
-  //   ];
-
 
 
  return(
@@ -72,7 +56,7 @@ function Course() {
         <div className="navbar bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.07)]">
           <div className="container mx-auto">
             <div className="flex-1">
-              <a className="btn btn-ghost normal-case text-xl font-bold">Careerly</a>
+              <a className="btn btn-ghost normal-case text-xl font-bold">Seminar halaman</a>
             </div>
             <div className="flex-none">
               <ul className="menu menu-horizontal p-0">
@@ -88,7 +72,7 @@ function Course() {
 
       <section>
         <div className=" mt-40">
-        <h1 className="text-center text-3xl font-normal">Temukan Kelas atau Bootcamp impianmu</h1>
+        <h1 className="text-center text-3xl font-normal">Temukan Seminar atau Workshop impianmu</h1>
         <div className="form-control mt-12 bg-white self-center w-3/6 mx-auto drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] p-4 h-4/6 rounded-lg">
           <div className="input-group">
           <input value={search} onChange={e => setSearch(e.target.value)}  type="text" placeholder="Cari Kelas impianmu..." className="input input-bordered input-primary w-full"/>
@@ -105,21 +89,17 @@ function Course() {
       <div className="container mx-auto mt-32">
             <div className="grid grid-cols-3 gap-x-12 gap-y-20 mx-28">
 
-                  {getData.map((val, idx) => (
-                  <div key={idx} className=" card bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
+  {getData.map((val, idx) => (
+  <div key={idx} className=" card bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
                     <div className="grid justify-items-start">
                       <figure className="px-10 pt-10  mx-auto">
-                        <img src={'https://buildwithangga.com'+val.image} alt="Shoes" className="rounded-xl max-h-[150px]" />
+                        <img src={val.image} alt="Shoes" className="rounded-xl max-h-[150px]" />
                       </figure>
                     </div>
                     <div className="card-body">
                       <h2 className="text-xl font-bold text-[#3F427B]">{val.title}</h2>
-                      <p className="text-lg text-[#3F427B]">{val.harga}</p>
                       <div className="card-actions flex mt-12">
-                      <Link to="/detail" state={val.url} className="link  btn btn-primary w-full self-end font-bold no-underline">
-                      Lihat
-                      {/* <button className="btn btn-primary w-full self-end font-bold" onClick={() => detailPage()}>Lihat</button> */}
-                        </Link>
+                      <button className="btn btn-primary w-full self-end font-bold" onClick={() => detailPage(val.url)}>Lihat</button>
                       </div>
                       </div>
                     </div>
@@ -134,4 +114,4 @@ function Course() {
  );
 }
 
-export default Course;
+export default Seminar;

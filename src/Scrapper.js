@@ -32,15 +32,44 @@ app.get('/results/:key', (req, res) => {
             // const articles = []
             console.log(html);
 
-            // $('.course-name', html).each(function () { //<-- cannot be a function expression
-            //     const title = $(this).text()
-            //     const url = $(this).find('p').text()
-            //     console.log(title);
-            //     articles.push({
-            //         title
-            //     })
-            // })
-            // res.json(articles)
+            $('.course-card', html).each(function () { //<-- cannot be a function expression
+                const title = $(this).find('div.course-name').text().trim()
+                const url = $(this).find('a').attr('href');
+                const harga = $(this).find('span.origin-price').text().trim();
+                const image = $(this).find('img').attr('src');
+                console.log(title);
+                articles.push({
+                    title, url, image, harga
+                })
+            })
+            res.json(articles)
+        }).catch(err => console.log(err))
+
+})
+
+app.get('/seminar/:key', (req, res) => {
+    // console.log(req.params.key);
+    // res.end(req.params.key);
+    const url = 'https://ngampooz.com/event/read?page=1';
+
+    const articles = [];
+
+    axios(url)
+        .then(response => {
+            const html = response.data
+            const $ = cheerio.load(html)
+            // const articles = []
+            console.log(html);
+
+            $('.per-card', html).each(function () { //<-- cannot be a function expression
+                const title = $(this).find('div.title a h6').text().trim();
+                const url = $(this).find('div.title a').attr('href');
+                const image = $(this).find('div.card a img.card-bg').attr('src');
+                articles.push({
+                    title, url, image
+                })
+            })
+            res.json(articles)
         }).catch(err => console.log(err))
 
 })
@@ -132,5 +161,48 @@ app.get('/kalibrr/:key', (req, res) => {
         }).catch(err => console.log('ada error', err))
 
 })
+
+
+
+// ========= Get Detail  ===========
+
+
+app.post('/jobs/detail', function (req, res) {
+  
+    console.log('data',req.body);
+    req.body; // JavaScript object containing the parse JSON
+  res.json(req.body);
+    // res.json({requestBody: req.body})
+    // const url = 'https://www.linkedin.com/jobs/search/?keywords='+req.params.key+'&location=Indonesia&position=1&pageNum=0';
+    // const url = req;
+
+    // const articles = [];
+
+    // axios(url)
+    //     .then(response => {
+    //         const html = response.data
+    //         const $ = cheerio.load(html)
+    //         // const articles = []
+            
+    //         $('div.base-search-card', html).each(function () { //<-- cannot be a function expression
+    //             // const title = $(this).text()
+    //             const job = $(this).find('div.jobs-unified-top-card h1.t-24').text().trim()
+    //             // const company = $(this).find('h4.base-search-card__subtitle a.hidden-nested-link').text().trim();
+    //             // const location = $(this).find('div.base-search-card__metadata span.job-search-card__location').text().trim();
+    //             // const logo = $(this).find('.artdeco-entity-image').attr('data-delayed-url');
+    //             // const detail = $(this).find('a.base-card__full-link').attr('href');
+    //             // console.log(detail);
+    //             articles.push({
+    //                 job
+    //             })
+    //         })
+    //         // res.json(articles)
+    //         res.setHeader('Content-Type', 'application/json');
+    //     res.send(JSON.stringify(articles));
+    //     }).catch(err => console.log('ada error', err))
+})
+
+
+// ======================
 
 app.listen(PORT, () => console.log(`server running on PORT ${PORT}`))
