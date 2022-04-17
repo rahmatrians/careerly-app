@@ -48,7 +48,7 @@ function SettingUser() {
             </div>
           </div>
 
-          <div className="card mx-auto w-95 bg-base-100 drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
+          <div className="card mx-auto w-3/4 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
             <div className="card-body">
               <table>
                 <tr>
