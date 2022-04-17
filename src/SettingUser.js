@@ -43,8 +43,8 @@ function SettingUser() {
               <span className="text-lg px-10 mt-3 font-bold text-xl">fahamiardi@gmail.com</span>
             </div>
             <div className="flex row ml-60 mt-10">
-              <button class="btn btn-md  md:btn-md btn-primary">Wishlist</button>
-              <button class="ml-5 btn btn-md  md:btn-md bg-red-500">Logout</button>
+              <button class="btn btn-md  md:btn-md btn-primary text-white">Wishlist</button>
+              <button class="ml-5 btn btn-md  md:btn-md bg-red-500 text-white">Logout</button>
             </div>
           </div>
 
