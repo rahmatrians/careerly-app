@@ -44,11 +44,11 @@ function SettingUser() {
             </div>
             <div className="flex row ml-60 mt-10">
               <button class="btn btn-md  md:btn-md btn-primary">Wishlist</button>
-              <button class="ml-5 btn btn-md  md:btn-md bg-FF186B">Logout</button>
+              <button class="ml-5 btn btn-md  md:btn-md bg-red-500">Logout</button>
             </div>
           </div>
 
-          <div className="card mx-auto w-95 lg:card-side bg-base-100 drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
+          <div className="card mx-auto w-95 bg-base-100 drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
             <div className="card-body">
               <table>
                 <tr>
@@ -63,13 +63,13 @@ function SettingUser() {
                   </td>
                 </tr>
                 <tr>
-                  <td >
+                  <td className="font-normal text-xl">
                     Tangerang Selatan
                   </td>
-                  <td>
+                  <td className="font-normal text-xl">
                     12 April 2001
                   </td>
-                  <td>
+                  <td className="font-normal text-xl">
                     SMA
                   </td>
                 </tr>
@@ -83,10 +83,10 @@ function SettingUser() {
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className="font-normal text-xl">
                     Laki - laki
                   </td>
-                  <td>
+                  <td className="font-normal text-xl">
                     0821 7880 2191
                   </td>
                 </tr>
@@ -98,7 +98,6 @@ function SettingUser() {
           </div>
         </div>
       </section>
-
     </>
   );
 }
