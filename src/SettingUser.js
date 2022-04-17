@@ -20,7 +20,10 @@ function SettingUser() {
               <ul className="menu menu-horizontal p-0">
                 <li><a>Home</a></li>
                 <li><a>Kategori</a></li>
+<<<<<<< HEAD
                 <li><a>Blog</a></li>
+=======
+>>>>>>> ae124c4ec7035a2dc32a64501880402c125509e2
                 <li><a>Tentang Kami</a></li>
                 <li><a>Hi, Ardi!
                   <div className="avatar">
@@ -38,12 +41,17 @@ function SettingUser() {
       <section>
         <div className="container my-40 mx-20 mr-20 ">
           <div className="flex flex-row pl-10 pt-10 pr-10 mb-20 justify-center">
+<<<<<<< HEAD
             <img src="https://api.lorem.space/image/face?hash=92310" className="profilepic w-24 rounded-full" />
+=======
+            <img src="https://api.lorem.space/image/face?hash=92310" className="profilepic" />
+>>>>>>> ae124c4ec7035a2dc32a64501880402c125509e2
             <div className="flex flex-col justify-center">
               <span className="text-lg font-bold px-10 text-3xl font-normal">Fahmi Ardi Pratama</span>
               <span className="text-lg px-10 mt-3 font-bold text-xl">fahamiardi@gmail.com</span>
             </div>
             <div className="flex row ml-60 mt-10">
+<<<<<<< HEAD
               <button class="btn btn-md  md:btn-md btn-primary">Wishlist</button>
               <button class="ml-5 btn btn-md  md:btn-md btn-secondary">Logout</button>
             </div>
@@ -65,12 +73,67 @@ function SettingUser() {
                 <div class="card-actions justify-end">
                   <button class="btn btn-outline btn-primary">Ubah Profil</button>
                 </div>
+=======
+              <button class="btn btn-md  md:btn-md btn-primary text-white">Wishlist</button>
+              <button class="ml-5 btn btn-md  md:btn-md bg-red-500 text-white">Logout</button>
+            </div>
+          </div>
+
+          <div className="card mx-auto w-3/4 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
+            <div className="card-body">
+              <table>
+                <tr>
+                  <td className="font-bold text-md">
+                    Kota Tinggal
+                  </td>
+                  <td className="font-bold text-md">
+                    Tanggal Lahir
+                  </td>
+                  <td className="font-bold text-md">
+                    Status Pendidikan
+                  </td>
+                </tr>
+                <tr>
+                  <td className="font-normal text-xl">
+                    Tangerang Selatan
+                  </td>
+                  <td className="font-normal text-xl">
+                    12 April 2001
+                  </td>
+                  <td className="font-normal text-xl">
+                    SMA
+                  </td>
+                </tr>
+                <div className="pt-10"> </div>
+                <tr>
+                  <td className="font-bold text-md">
+                    Jenis Kelamin
+                  </td>
+                  <td className="font-bold text-md">
+                    No. Handphone
+                  </td>
+                </tr>
+                <tr>
+                  <td className="font-normal text-xl">
+                    Laki - laki
+                  </td>
+                  <td className="font-normal text-xl">
+                    0821 7880 2191
+                  </td>
+                </tr>
+              </table>
+              <div className="card-actions justify-end">
+                <button className="btn btn-outline btn-primary">Ubah Profil</button>
+>>>>>>> ae124c4ec7035a2dc32a64501880402c125509e2
               </div>
             </div>
           </div>
         </div>
       </section>
+<<<<<<< HEAD
 
+=======
+>>>>>>> ae124c4ec7035a2dc32a64501880402c125509e2
     </>
   );
 }

@@ -6,13 +6,27 @@ import Home from './Home';
 import Login from './Login';
 import Course from './Course';
 import CourseDetail from './CourseDetail';
+<<<<<<< HEAD
 import UbahProfil from './UbahProfil';
+=======
+<<<<<<< HEAD
+import SeminarDetail from './SeminarDetail';
+import DetailBootcamp from './DetailBootcamp';
+import DetailMagang from './DetailMagang';
+=======
+import SettingUser from './SettingUser'
+>>>>>>> 48da6f3a7d40e3330c47e023219b5387482ca93c
+>>>>>>> ae124c4ec7035a2dc32a64501880402c125509e2
 import reportWebVitals from './reportWebVitals';
 import Register from './Register';
 import SettingUser from './SettingUser';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
+<<<<<<< HEAD
+=======
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+>>>>>>> ae124c4ec7035a2dc32a64501880402c125509e2
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,13 +37,29 @@ ReactDOM.render(
         <Route path="login" element={<Login />}></Route>
         <Route path="course" element={<Course />} />
         <Route path="detail" element={<CourseDetail />} />
+<<<<<<< HEAD
         <Route path="ubahprofil" element={<UbahProfil />} />
         <Route path="register" element={<Register />} />
+=======
+<<<<<<< HEAD
+        <Route path="SeminarDetail" element={<SeminarDetail />} />
+        <Route path="DetailBootcamp" element={<DetailBootcamp />} />
+        <Route path="DetailMagang" element={<DetailMagang />} />
+          {/* <Route path=":teamId" element={<Team />} /> */}
+          {/* <Route index element={<LeagueStandings />} /> */}
+    </Routes>
+  </BrowserRouter>
+=======
+>>>>>>> ae124c4ec7035a2dc32a64501880402c125509e2
         <Route path="settinguser" element={<SettingUser />} />
         {/* <Route path=":teamId" element={<Team />} /> */}
         {/* <Route index element={<LeagueStandings />} /> */}
       </Routes>
     </BrowserRouter>
+<<<<<<< HEAD
+=======
+>>>>>>> 48da6f3a7d40e3330c47e023219b5387482ca93c
+>>>>>>> ae124c4ec7035a2dc32a64501880402c125509e2
   </React.StrictMode>,
   document.getElementById('root')
 );
