@@ -18,7 +18,7 @@ function Work() {
   }, [getData])
 
 
-  const detailPage = async () => {
+  // const detailPage = async () => {
 // console.log('detail cui',data);
     // fetch("http://localhost:8000/detail", {
     //   method: "POST",
@@ -29,21 +29,20 @@ function Work() {
     // });
 
 
-    await axios.post('http://localhost:8000/detail', {
-      data: 'data'
-    })
-    .then((response) => {
-      // console.log(response.data);
-      nav({pathname:`/detail`, state:response});
-    }, (error) => {
-      console.log(error);
-    });
-    
-  }
+    // await axios.post('http://localhost:8000/detail', {
+    //   data: 'data'
+    // })
+    // .then((response) => {
+    //   // console.log(response.data);
+    //   nav({pathname:`/detail`, state:response});
+    // }, (error) => {
+    //   console.log(error);
+    // });
+  // }
 
 
   const searchingData = () => {
-    console.log(search);
+    // console.log(search);
     // const url = 'http://localhost:8000/results/' + search;
     const url = 'http://localhost:8000/jobseeker/' + search;
 
@@ -116,7 +115,7 @@ function Work() {
                       <h2 className="text-xl font-bold text-[#3F427B]">{val.job}</h2>
                       <p className="text-lg text-[#3F427B]">{val.location}</p>
                       <div className="card-actions flex mt-12">
-                      <Link to="/detail" state={val.detail} className="link  btn btn-primary w-full self-end font-bold no-underline">
+                      <Link to="/workDetail" state={val} className="link  btn btn-primary w-full self-end font-bold no-underline">
                       Lihat
                       {/* <button className="btn btn-primary w-full self-end font-bold" onClick={() => detailPage()}>Lihat</button> */}
                         </Link>

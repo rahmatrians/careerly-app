@@ -33,15 +33,6 @@ function Wishlist() {
       })
   }
   
-  //  let dataKu = [
-  //     {nama : 'react js aja', harga : 'Rp. 400.000'},
-  //     {nama : 'flutter nih', harga : 'Rp. 220.000'},
-  //     {nama : 'react native ', harga : 'Rp. 220.000'},
-  //     {nama : 'vue js', harga : 'Rp. 220.000'},
-  //     {nama : 'svelte', harga : 'Rp. 220.000'},
-  //     {nama : 'node js', harga : 'Rp. 220.000'},
-  //   ];
-
 
 
  return(

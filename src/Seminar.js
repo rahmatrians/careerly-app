@@ -14,29 +14,6 @@ function Seminar() {
   }, [getData])
 
 
-  const detailPage = async (data) => {
-console.log('detail cui',data);
-    // fetch("http://localhost:8000/detail", {
-    //   method: "POST",
-    //   headers: {'Content-Type': 'application/json'}, 
-    //   body: JSON.stringify(data)
-    // }).then(res => {
-    //   console.log("Request complete! response:", res);
-    // });
-
-    await axios.post('http://localhost:8000/detail', {
-      data: data
-    })
-    .then((response) => {
-      console.log(response.data);
-      nav({pathname:`/detail`, state:data});
-    }, (error) => {
-      console.log(error);
-    });
-    
-  }
-
-
   const searchingData = () => {
     console.log(search);
     const url = 'http://localhost:8000/seminar/'+search;
@@ -86,11 +63,11 @@ console.log('detail cui',data);
 
 
       <section>
-      <div className="container mx-auto mt-32">
+      <div className="container mx-auto zmt-32">
             <div className="grid grid-cols-3 gap-x-12 gap-y-20 mx-28">
 
-  {getData.map((val, idx) => (
-  <div key={idx} className=" card bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
+                  {getData.map((val, idx) => (
+                  <div key={idx} className=" card bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
                     <div className="grid justify-items-start">
                       <figure className="px-10 pt-10  mx-auto">
                         <img src={val.image} alt="Shoes" className="rounded-xl max-h-[150px]" />
@@ -99,7 +76,7 @@ console.log('detail cui',data);
                     <div className="card-body">
                       <h2 className="text-xl font-bold text-[#3F427B]">{val.title}</h2>
                       <div className="card-actions flex mt-12">
-                      <button className="btn btn-primary w-full self-end font-bold" onClick={() => detailPage(val.url)}>Lihat</button>
+                      <Link to="/SeminarDetail" state={val} className="link  btn btn-primary w-full self-end font-bold no-underline">Lihat</Link>
                       </div>
                       </div>
                     </div>

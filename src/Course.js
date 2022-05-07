@@ -10,59 +10,36 @@ function Course() {
   const [search, setSearch] = useState("");
   const [getData, setGetData] = useState([]);
   
-  let test = {
-    data: { id: "1t4", title: " How to pass state in react-router-dom", tag: ["reactjs", "react-router-dom"]}
- } 
   
   useEffect(() => {
   }, [getData])
 
 
-  const detailPage = async () => {
-// console.log('detail cui',data);
-    // fetch("http://localhost:8000/detail", {
-    //   method: "POST",
-    //   headers: {'Content-Type': 'application/json'}, 
-    //   body: JSON.stringify(data)
-    // }).then(res => {
-    //   console.log("Request complete! response:", res);
-    // });
-
-
-    await axios.post('http://localhost:8000/detail', {
-      data: 'data'
-    })
-    .then((response) => {
-      // console.log(response.data);
-      nav({pathname:`/detail`, state:response});
-    }, (error) => {
-      console.log(error);
-    });
+  // const detailPage = async () => {
+  //   await axios.post('http://localhost:8000/detail', {
+  //     data: 'data'
+  //   })
+  //   .then((response) => {
+  //     // console.log(response.data);
+  //     nav({pathname:`/detail`, state:response});
+  //   }, (error) => {
+  //     console.log(error);
+  //   });
     
-  }
+  // }
 
-
+// find course
   const searchingData = () => {
     console.log(search);
-    const url = 'http://localhost:8000/results/' + search;
-    // const url = 'http://localhost:8000/jobseeker/' + search;
+    const url = 'http://localhost:8000/course/' + search;
 
     axios(url)
       .then(response => {
         const html = response.data
-        console.log('datanya', html);
         setGetData(html);
       })
   }
 
-  //  let dataKu = [
-  //     {nama : 'react js aja', harga : 'Rp. 400.000'},
-  //     {nama : 'flutter nih', harga : 'Rp. 220.000'},
-  //     {nama : 'react native ', harga : 'Rp. 220.000'},
-  //     {nama : 'vue js', harga : 'Rp. 220.000'},
-  //     {nama : 'svelte', harga : 'Rp. 220.000'},
-  //     {nama : 'node js', harga : 'Rp. 220.000'},
-  //   ];
 
 
 
@@ -118,7 +95,6 @@ function Course() {
                       <div className="card-actions flex mt-12">
                       <Link to="/detail" state={val.url} className="link  btn btn-primary w-full self-end font-bold no-underline">
                       Lihat
-                      {/* <button className="btn btn-primary w-full self-end font-bold" onClick={() => detailPage()}>Lihat</button> */}
                         </Link>
                       </div>
                       </div>

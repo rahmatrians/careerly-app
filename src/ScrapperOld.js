@@ -19,8 +19,7 @@ app.post('/detail', function (req, res) {
     res.send(JSON.stringify({dataku:"ini data aja sih"}));
 })
 
-// find course
-app.get('/course/:key', (req, res) => {
+app.get('/results/:key', (req, res) => {
     const url = 'https://buildwithangga.com/search?keyword=' + req.params.key;
 
     const articles = [];
@@ -36,6 +35,7 @@ app.get('/course/:key', (req, res) => {
                 const url = $(this).find('a').attr('href');
                 const harga = $(this).find('span.origin-price').text().trim();
                 const image = $(this).find('img').attr('src');
+                console.log(title);
                 articles.push({
                     title, url, image, harga
                 })
@@ -47,7 +47,6 @@ app.get('/course/:key', (req, res) => {
 
 app.get('/seminar/:key', (req, res) => {
     const url = 'https://ngampooz.com/event/read?page=1';
-    // const url = 'https://jadwalevent.web.id/?s=teknologi';
 
     const articles = [];
 
@@ -57,7 +56,7 @@ app.get('/seminar/:key', (req, res) => {
             const $ = cheerio.load(html)
             console.log(html);
 
-            $('.per-card', html).each(function () { 
+            $('.per-card', html).each(function () { //<-- cannot be a function expression
                 const title = $(this).find('div.title a h6').text().trim();
                 const url = $(this).find('div.title a').attr('href');
                 const image = $(this).find('div.card a img.card-bg').attr('src');
@@ -153,19 +152,25 @@ app.get('/kalibrr/:key', (req, res) => {
 
 // ========= Get Detail  ===========
 
-app.post('/course-detail', function (req, res) {
+app.post('/course/detail', function (req, res) {
     
-    const url = req.body.data;
-    console.log(url);
+    // res.send('this is the server response');
+    // console.log('link',url);
+    //   res.json(req.body);
+    // res.send(JSON.stringify(req.body.data.replace(/"/g, '')));
+    // const url = req.body.data.replace(/"/g, '');
+    const url = "https://buildwithangga.com/kelas/english-for-freelancer-meetings?thumbnail=DpZCG4MVoK.39&main_leads=searchresult";
     
     axios(url)
     .then(response => {
         const html = response.data
         const $ = cheerio.load(html)
+        // console.log(html);
 
         
         const dataScrape = [];
         $('.container', html).each(function () { //<-- cannot be a function expression
+            // const title = $(this).text()
             const title = $(this).find('h1.header-primary').text().trim();
             const price = $(this).find('.item-pricing h2.title').text().trim();
             const about = $(this).find('.tabs-content-nd #pills-home .col-lg-7:nth-child(1)').html();
@@ -176,30 +181,10 @@ app.post('/course-detail', function (req, res) {
         })
         res.json(dataScrape);
     }).catch(err => console.log('err'))      
-})
-
-
-
-app.post('/seminar-detail', function (req, res) {
-    
-    const url = req.body.data.replace(/"/g, '');
-    
-    axios(url)
-    .then(response => {
-        const html = response.data
-        const $ = cheerio.load(html)
-        
-        
-        const dataScrape = [];
-        $('#main-event', html).each(function () {
-            const price = $(this).find('.event-price').text().trim();
-            const description = $(this).find('.under').html();
-            dataScrape.push({
-            price,description
-            })
-        })
-        res.json(dataScrape);
-    }).catch(err => console.log('err'))      
+    //         // res.json(articles)
+    //         res.setHeader('Content-Type', 'application/json');
+    //     res.send(JSON.stringify(articles));
+    //     }).catch(err => console.log('ada error', err))
 })
 
 

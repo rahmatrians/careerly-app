@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import Home from './Home';
 import Login from './Login';
 import Course from './Course';
@@ -13,11 +12,14 @@ import DetailBootcamp from './DetailBootcamp';
 import DetailMagang from './DetailMagang';
 import reportWebVitals from './reportWebVitals';
 import Seminar from './Seminar';
+import Profil from './Profil';
 import Work from './Work';
 import Wishlist from './Wishlist';
 import Dashboard from './Dashboard';
 import Register from './Register';
+import RegisterNext from './RegisterNext';
 import SettingUser from './SettingUser';
+import WorkDetail from './WorkDetail';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
@@ -37,10 +39,13 @@ ReactDOM.render(
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="ubahprofil" element={<UbahProfil />} />
         <Route path="register" element={<Register />} />
+        <Route path="profil" element={<Profil />} />
+        <Route path="RegisterNext" element={<RegisterNext />} />
         <Route path="SeminarDetail" element={<SeminarDetail />} />
         <Route path="DetailBootcamp" element={<DetailBootcamp />} />
         <Route path="DetailMagang" element={<DetailMagang />} />
         <Route path="settinguser" element={<SettingUser />} />
+        <Route path="workDetail" element={<WorkDetail />} />
           {/* <Route path=":teamId" element={<Team />} /> */}
           {/* <Route index element={<LeagueStandings />} /> */}
       </Routes>

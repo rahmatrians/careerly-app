@@ -1,53 +1,52 @@
 import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
-
-import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
+import supabase from './config/supabase';
+import { IconlyProvider, Home, Notification } from 'react-iconly'
 
 function Dashboard() {
-  let nav = useNavigate();
-  const [search, setSearch] = useState("");
-  const [getData, setGetData] = useState([]);
-  
-  let test = {
-    data: { id: "1t4", title: " How to pass state in react-router-dom", tag: ["reactjs", "react-router-dom"]}
- } 
+  const [userData, setUserData] = useState([]);
+  const [userCount, setUserCount] = useState("");
   
   useEffect(() => {
-    searchingData();
-  }, [getData])
+    getData();
+  }, [])
 
+  const getData = async () => {
+    const { data, error, count } = await supabase
+      .from('user')
+      .select('*', { count: 'exact' })
 
-
-  const searchingData = async () => {
-    console.log(search);
-    const url = 'http://localhost:8000/results/mobile';
-    // const url = 'http://localhost:8000/jobseeker/' + search;
-
-    axios(url)
-      .then(response => {
-        const html = response.data
-        console.log('datanya', html);
-        setGetData(html);
-      })
+    setUserData(data);
+    setUserCount(count);
   }
-  
+
 
 
  return(
     <>
       <section className="grid grid-cols-5 gap-4">
-        <div className="card rounded-none h-screen bg-white w-96 drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
-            <div class="mx-12">
+        <div className="relative card rounded-none h-screen bg-white w-96 drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
+            <div className="mx-12">
             <a className="mt-12 btn btn-ghost normal-case text-3xl font-bold">Careerly</a>
-            <div class="mt-24">
-            <ul class="menu  mx-auto w-full">
+                <IconlyProvider
+      set='bulk'
+      primaryColor='blueviolet'
+      secondaryColor='blue'
+      stroke='bold'
+      size='xlarge'
+    >
+      <Home />
+      <Notification primaryColor='yellow' />
+    </IconlyProvider>
+            <div className="mt-24">
+            <ul className="menu mx-auto w-full">
               <li><a className="active rounded-xl font-bold">Ringkasan</a></li>
               <li><a className="rounded-xl">Laporan</a></li>
               <li><a className="rounded-xl">Profile</a></li>
               <li><a className="rounded-xl">Feedback</a></li>
           </ul>
+          <button className="absolute inset-x-12 bottom-10 btn btn-danger">Logout</button>
         </div>
         </div>
         </div>
@@ -59,7 +58,7 @@ function Dashboard() {
     
         <div className=" card p-8 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
         <div className="flex mb-5">
-          <p className="bg-[#FFEED6] text-[#FD795C] p-5 text-3xl font-bold rounded-xl ">324</p>
+          <p className="bg-[#FFEED6] text-[#FD795C] p-5 text-3xl font-bold rounded-xl ">{userCount}</p>
         </div>
           <p className="text-xl font-medium text-[#3F427B]">Total Pengguna</p>
         </div>

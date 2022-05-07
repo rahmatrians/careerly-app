@@ -2,10 +2,33 @@ import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
 
-import { Link, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from 'axios';
 
-function Detail() {
+function SeminarDetail() {
+  const location = useLocation();
+  const [getData, setGetData] = useState([]);
+  const [url, setUrl] = useState([]);
+  const [getResponse, setGetResponse] = useState([]);
+
+  useEffect(() => {
+    setGetData(location.state);
+    setUrl(location.state.url);
+    getDescription(location.state.url);
+  }, [])
+
+  const getDescription = (urlLink) => {
+    axios.post('http://localhost:8000/seminar-detail', {
+      data: JSON.stringify(urlLink)
+    })
+      .then((response) => {
+        setGetResponse(response.data[0]);
+      }, (error) => {
+        console.log(error);
+      });
+  }
+
+
   return (
     <>
 
@@ -29,54 +52,62 @@ function Detail() {
 
       <section>
         <div className=" mt-40 mb-20">
-          <h1 className="text-center text-2xl font-normal">[Data & Analytics Workshop] Visualize Your Data using Tableau</h1>
+          <h1 className="text-center text-2xl font-normal">{getData.title}</h1>
         </div>
       </section>
 
       <section>
-        <div class="flex font-sans">
-          <div class="card card-compact w-96 bg-base-100 shadow-xl relative ml-52">
-            <img src={require('./images/Detailseminar.png')} alt="" class="absolute inset-0 w-full h-full object-cover" />
+        <div className="flex font-sans">
+          <div className="card card-compact w-96 bg-base-100 shadow-xl relative ml-52">
+            <img src={getData.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
-          <form class="flex-auto p-6 mr-56">
-            <div class="flex flex-wrap">
-              <h1 class="flex-auto text-lg font-semibold text-slate-900">
+          <form className="flex-auto p-6 mr-56">
+            <div className="flex flex-wrap">
+              <h1 className="flex-auto text-lg font-semibold text-slate-900">
                 Harga
               </h1>
-              <div class="w-full flex-none text-sm font-semibold text-slate-700 mt-2">
-                Rp. 500.000
+              <div className="w-full flex-none text-sm font-semibold text-slate-700 mt-2">
+                {getResponse.price}
               </div>
             </div>
-            <div class="flex space-x-4 mb-6 text-sm font-medium">
-              <div class="flex-auto flex space-x-4 mt-10">
-                <button class="h-10 px-6 font-semibold rounded-md bg-black text-white" type="submit">
+            <div className="flex space-x-4 mb-6 text-sm font-medium">
+              <div className="flex-auto flex space-x-4 mt-10">
+                {/* <button className="h-10 px-6 font-semibold rounded-md bg-black text-white" type="submit">
                   Tertarik
-                </button>
+                </button> */}
+                          <div className="">
+            <a href={getData.url} target="_blank" className="btn btn-primary font-bold">Tertarik</a>
+          </div>
               </div>
-              <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200" type="button" aria-label="Like">
+              <button className="flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200" type="button" aria-label="Like">
                 <svg width="20" height="20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
+                  <path fillRule="evenodd" clipRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
                 </svg>
               </button>
             </div>
           </form>
         </div>
 
-        <div class="mt-6 ml-52">
-        <button class="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
+        <div className="mt-6 ml-52">
+        {/* <button className="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
           Deskripsi
         </button>
-        <button class="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
+        <button className="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
           Materi
         </button>
-        <button class="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
+        <button className="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
           Waktu
-        </button>
+        </button> */}
+      <div className="mx-auto my-16">
+          {getResponse && (
+            <div dangerouslySetInnerHTML={{ __html: getResponse.description }}></div>
+          )}
+        </div>
         </div>
       </section>
 
       <section>
-        <div>
+        {/* <div>
           <h1 className="text-xl font-normal ml-52 mt-10 mb-8"><strong>Deskripsi</strong></h1>
           <h4 className="text-lg w-8/12 mx-auto mb-16">
             <p>Melalui kelas kami, peserta diharapkan memperoleh pengetahuan praktis yang dapat diaplikasikan dalam pekerjaan,
@@ -93,17 +124,11 @@ function Detail() {
               Dalam Level ini, peserta akan dibekali dengan kerangka dasar, panduan end-to-end process, studi kasus, serta best practice
               dari topik terkait.</p>
           </h4>
-        </div>
+        </div> */}
       </section>
-
-
-
-
-
-
 
     </>
   );
 }
 
-export default Detail;
+export default SeminarDetail;
