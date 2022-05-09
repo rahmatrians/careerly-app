@@ -1,22 +1,33 @@
 import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
-
-import { Link, useNavigate } from "react-router-dom";
+import supabase from './config/supabase';
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 function Seminar() {
-  let nav = useNavigate();
+  const userId = 'efcba67b-8a2f-41ea-8559-1f1f92a289c5';
   const [search, setSearch] = useState("");
+  const [categoryId, setCategoryId] = useState("");
   const [getData, setGetData] = useState([]);
   
+  
   useEffect(() => {
+    getCategory();
   }, [getData])
 
+  const getCategory = async () => {
+    const { data, error } = await supabase
+    .from('category')
+    .select()
+    .eq('route','seminar')
+    .single();
+    setCategoryId(data.id);
+  }
 
-  const searchingData = () => {
+  const searchingData = async () => {
     console.log(search);
-    const url = 'http://localhost:8000/seminar/'+search;
+    const url = 'https://careerly-service.herokuapp.com/seminar/'+search;
 
     axios(url)
       .then(response => {
@@ -24,6 +35,20 @@ function Seminar() {
         console.log('datanya', html);
         setGetData(html);
       })
+
+      const { data, error } = await supabase
+      .from('history')
+      .insert([
+        {
+          name: search,
+          user_id: userId,
+          category_id: categoryId,
+        }
+      ])
+  
+    if (error) {
+      console.log(error.message);
+    }
   }
 
 

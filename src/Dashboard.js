@@ -2,7 +2,10 @@ import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
 import supabase from './config/supabase';
-import { IconlyProvider, Home, Notification } from 'react-iconly'
+import Graph from './images/iconly/Graph.svg';
+import File from './images/iconly/File.svg';
+import Profile from './images/iconly/Profile.svg';
+import Feedback from './images/iconly/Feedback.svg';
 
 function Dashboard() {
   const [userData, setUserData] = useState([]);
@@ -29,22 +32,12 @@ function Dashboard() {
         <div className="relative card rounded-none h-screen bg-white w-96 drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
             <div className="mx-12">
             <a className="mt-12 btn btn-ghost normal-case text-3xl font-bold">Careerly</a>
-                <IconlyProvider
-      set='bulk'
-      primaryColor='blueviolet'
-      secondaryColor='blue'
-      stroke='bold'
-      size='xlarge'
-    >
-      <Home />
-      <Notification primaryColor='yellow' />
-    </IconlyProvider>
             <div className="mt-24">
             <ul className="menu mx-auto w-full">
-              <li><a className="active rounded-xl font-bold">Ringkasan</a></li>
-              <li><a className="rounded-xl">Laporan</a></li>
-              <li><a className="rounded-xl">Profile</a></li>
-              <li><a className="rounded-xl">Feedback</a></li>
+              <li><a className="active rounded-xl font-bold"><img src={Graph} /> Ringkasan</a></li>
+              <li><a className="rounded-xl"><img src={File} /> Laporan</a></li>
+              <li><a className="rounded-xl"><img src={Profile} /> Profile</a></li>
+              <li><a className="rounded-xl"><img src={Feedback} /> Feedback</a></li>
           </ul>
           <button className="absolute inset-x-12 bottom-10 btn btn-danger">Logout</button>
         </div>

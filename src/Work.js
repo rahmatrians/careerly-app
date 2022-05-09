@@ -1,26 +1,32 @@
 import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
-
+import supabase from './config/supabase';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
 function Work() {
-  let nav = useNavigate();
+  const userId = 'efcba67b-8a2f-41ea-8559-1f1f92a289c5';
   const [search, setSearch] = useState("");
+  const [categoryId, setCategoryId] = useState("");
   const [getData, setGetData] = useState([]);
   
-  let test = {
-    data: { id: "1t4", title: " How to pass state in react-router-dom", tag: ["reactjs", "react-router-dom"]}
- } 
-  
   useEffect(() => {
+    getCategory();
   }, [getData])
 
+  const getCategory = async () => {
+    const { data, error } = await supabase
+    .from('category')
+    .select()
+    .eq('route','work')
+    .single();
+    setCategoryId(data.id);
+  }
 
   // const detailPage = async () => {
 // console.log('detail cui',data);
-    // fetch("http://localhost:8000/detail", {
+    // fetch("https://careerly-service.herokuapp.com/detail", {
     //   method: "POST",
     //   headers: {'Content-Type': 'application/json'}, 
     //   body: JSON.stringify(data)
@@ -29,7 +35,7 @@ function Work() {
     // });
 
 
-    // await axios.post('http://localhost:8000/detail', {
+    // await axios.post('https://careerly-service.herokuapp.com/detail', {
     //   data: 'data'
     // })
     // .then((response) => {
@@ -41,10 +47,10 @@ function Work() {
   // }
 
 
-  const searchingData = () => {
+  const searchingData = async () => {
     // console.log(search);
-    // const url = 'http://localhost:8000/results/' + search;
-    const url = 'http://localhost:8000/jobseeker/' + search;
+    // const url = 'https://careerly-service.herokuapp.com/results/' + search;
+    const url = 'https://careerly-service.herokuapp.com/jobseeker/' + search;
 
     axios(url)
       .then(response => {
@@ -52,6 +58,20 @@ function Work() {
         console.log('datanya', html);
         setGetData(html);
       })
+
+      const { data, error } = await supabase
+      .from('history')
+      .insert([
+        {
+          name: search,
+          user_id: userId,
+          category_id: categoryId,
+        }
+      ])
+  
+    if (error) {
+      console.log(error.message);
+    }
   }
   
   //  let dataKu = [

@@ -20,7 +20,7 @@ function CourseDetail() {
 
   
   const getDescription = (urlLink) => {
-    axios.post('http://localhost:8000/course-detail', {
+    axios.post('https://careerly-service.herokuapp.com/course-detail', {
       data: JSON.stringify(urlLink)
     })
       .then((response) => {
@@ -33,13 +33,13 @@ function CourseDetail() {
 
   
   // const testAja = () => {
-  //    axios.post('http://localhost:8000/course/detail', {
+  //    axios.post('https://careerly-service.herokuapp.com/course/detail', {
   //     // data: JSON.stringify({ data: url })
   //     data: JSON.stringify(url)
   //   })
   //   // axios({
   //   //   method: 'post',
-  //   //   url: 'http://localhost:8000/jobs/detail',
+  //   //   url: 'https://careerly-service.herokuapp.com/jobs/detail',
   //   //   data: {
   //   //     firstName: 'Finn',
   //   //     lastName: 'Williams'
