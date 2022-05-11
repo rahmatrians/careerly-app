@@ -20,7 +20,7 @@ app.post('/detail', function (req, res) {
 })
 
 app.get('/results/:key', (req, res) => {
-    const url = 'https://buildwithangga.com/search?keyword=' + req.params.key;
+    const url = 'http://localhost:8000/search?keyword=' + req.params.key;
 
     const articles = [];
 
@@ -159,7 +159,7 @@ app.post('/course/detail', function (req, res) {
     //   res.json(req.body);
     // res.send(JSON.stringify(req.body.data.replace(/"/g, '')));
     // const url = req.body.data.replace(/"/g, '');
-    const url = "https://buildwithangga.com/kelas/english-for-freelancer-meetings?thumbnail=DpZCG4MVoK.39&main_leads=searchresult";
+    const url = "http://localhost:8000/kelas/english-for-freelancer-meetings?thumbnail=DpZCG4MVoK.39&main_leads=searchresult";
     
     axios(url)
     .then(response => {

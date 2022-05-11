@@ -18,7 +18,7 @@ function WorkDetail() {
   }, [])
 
   const getDescription = (urlLink) => {
-    axios.post('https://careerly-service.herokuapp.com/jobseeker-detail', {
+    axios.post('http://localhost:8000/jobseeker-detail', {
       data: JSON.stringify(urlLink)
     })
       .then((response) => {

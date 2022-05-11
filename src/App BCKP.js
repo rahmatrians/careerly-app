@@ -23,7 +23,7 @@ function App() {
     //     console.log(yaya);;
     //   })
 
-    const url = 'https://careerly-service.herokuapp.com/results/web';
+    const url = 'http://localhost:8000/results/web';
 
 
     axios(url)
@@ -47,7 +47,7 @@ function App() {
 
   const searchingData = () => {
     console.log(search);
-    const url = 'https://careerly-service.herokuapp.com/results/' + search;
+    const url = 'http://localhost:8000/results/' + search;
 
     axios(url)
       .then(response => {

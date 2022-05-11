@@ -21,8 +21,8 @@ function App() {
 
   const searchingData = () => {
     console.log(search);
-    // const url = 'https://careerly-service.herokuapp.com/results/' + search;
-    const url = 'https://careerly-service.herokuapp.com/jobseeker/' + search;
+    // const url = 'http://localhost:8000/results/' + search;
+    const url = 'http://localhost:8000/jobseeker/' + search;
 
     axios(url)
       .then(response => {

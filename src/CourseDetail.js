@@ -1,11 +1,13 @@
 import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
-
+import supabase from './config/supabase';
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
 
 function CourseDetail() {
+  const userId = 'efcba67b-8a2f-41ea-8559-1f1f92a289c5';
+  const categoryId = 'b1167659-1242-4114-abe0-9970010d7f87';
   const location = useLocation();
   const [getData, setGetData] = useState([]);
   const [url, setUrl] = useState([]);
@@ -14,13 +16,13 @@ function CourseDetail() {
   useEffect(() => {
     console.log('location', location.state);
     setGetData(location.state);
-    setUrl(location.state.detail);
+    setUrl(location.state);
     getDescription(location.state.detail);
   }, [])
 
   
   const getDescription = (urlLink) => {
-    axios.post('https://careerly-service.herokuapp.com/course-detail', {
+    axios.post('http://localhost:8000/course-detail', {
       data: JSON.stringify(urlLink)
     })
       .then((response) => {
@@ -31,15 +33,30 @@ function CourseDetail() {
       });
   }
 
+  const save = async () => {
+    const { data, error } = await supabase
+    .from('saved')
+    .insert([
+      {
+        url: url,
+        user_id: userId,
+        category_id: categoryId,
+      }
+    ])
+
+    if (error) {
+      console.log(error.message);
+    }
+  }
   
   // const testAja = () => {
-  //    axios.post('https://careerly-service.herokuapp.com/course/detail', {
+  //    axios.post('http://localhost:8000/course/detail', {
   //     // data: JSON.stringify({ data: url })
   //     data: JSON.stringify(url)
   //   })
   //   // axios({
   //   //   method: 'post',
-  //   //   url: 'https://careerly-service.herokuapp.com/jobs/detail',
+  //   //   url: 'http://localhost:8000/jobs/detail',
   //   //   data: {
   //   //     firstName: 'Finn',
   //   //     lastName: 'Williams'
@@ -102,7 +119,7 @@ function CourseDetail() {
               Tertarik
             </button>
           </div>
-          <button className="flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200" type="button" aria-label="Like">
+          <button onClick={() => save()} className="flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200" type="button" aria-label="Like">
             <svg width="20" height="20" fill="currentColor" aria-hidden="true">
               <path fillRule="evenodd" clipRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
             </svg>

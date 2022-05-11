@@ -27,7 +27,7 @@ function Seminar() {
 
   const searchingData = async () => {
     console.log(search);
-    const url = 'https://careerly-service.herokuapp.com/seminar/'+search;
+    const url = 'http://localhost:8000/seminar/'+search;
 
     axios(url)
       .then(response => {
