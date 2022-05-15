@@ -2,10 +2,48 @@ import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import { BeakerIcon } from '@heroicons/react/solid';
 import './CustomButton.css';
+import { useNavigate } from "react-router-dom";
+import supabase from './config/supabase';
 
 function Home() {
+  const userId = 'efcba67b-8a2f-41ea-8559-1f1f92a289c5';
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [getCategoryData, setGetCategoryData] = useState([]);
+
   useEffect(() => {
+    setLoading(true);
+    getCategory();
+    setLoading(false);
   }, [])
+
+  const getCategory = async () => {
+    const { data, error } = await supabase
+      .from('category')
+      .select()
+      .order('position', { ascending: true });
+
+    setGetCategoryData(data);
+  }
+
+  const history = async (val) => {
+    const { data, error } = await supabase
+      .from('history')
+      .insert([
+        {
+          name: val.id,
+          user_id: userId,
+          category_id: val.id,
+        }
+      ])
+
+
+    if (error) {
+      console.log(error.message);
+    } else {
+      navigate('/' + val.route);
+    }
+  }
 
   return (
     <>
@@ -36,26 +74,28 @@ function Home() {
           <div className="container  mx-auto mt-16">
             <div className="flex flex-row gap-x-8 mx-28">
 
-              <a href="/test" className="flex-auto card w-44 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
-                <div>
-                  <div className="grid justify-items-start">
-                    <figure className="px-10 pt-10">
-                      <img src={require('./images/course.jpg')} alt="Shoes" className="rounded-xl max-h-[150px]" />
-                    </figure>
-                  </div>
-                  <div className="card-body gap-y-5">
-                    <h2 className="text-3xl font-normal text-[#3F427B]">Seminar / <br /> Workshop</h2>
-                    <div className="grid justify-items-end">
-                      <button className="group btn btn-sm btn-primary x-btn"><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-3 stroke-[#6171FE] group-hover:stroke-white" viewBox="0 0 24 24" strokeWidth="2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg></button>
+              {getCategoryData.map((val) => (
+                <button key={val.id} onClick={() => history({ id: val.id, route: val.route })} className="flex-auto card w-44 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
+                  <div>
+                    <div className="grid justify-items-start">
+                      <figure className="px-10 pt-10">
+                        <img src={val.image_url} alt="Shoes" className="rounded-xl max-h-[150px]" />
+                      </figure>
+                    </div>
+                    <div className="card-body gap-y-5">
+                      <h2 className="text-3xl font-normal max-w-[70%] text-left text-[#3F427B]">{val.name}</h2>
+                      <div className="grid justify-items-end">
+                        <div className="group btn btn-sm btn-primary x-btn"><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-3 stroke-[#6171FE] group-hover:stroke-white" viewBox="0 0 24 24" strokeWidth="2">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg></div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </a>{/* end of category card  */}
+                </button>
+              ))}
 
 
-              <a href="/test" className="flex-auto card w-44 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
+              {/* <a href="/seminar" className="flex-auto card w-44 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
                 <div>
                   <div className="grid justify-items-start">
                     <figure className="px-10 pt-10">
@@ -71,10 +111,11 @@ function Home() {
                     </div>
                   </div>
                 </div>
-              </a>{/* end of category card  */}
+              </a> */}
+              {/* end of category card  */}
 
 
-              <a href="/test" className="flex-auto card w-44 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
+              {/* <a href="/work" className="flex-auto card w-44 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
                 <div>
                   <div className="grid justify-items-start">
                     <figure className="px-10 pt-10">
@@ -82,7 +123,7 @@ function Home() {
                     </figure>
                   </div>
                   <div className="card-body gap-y-5">
-                    <h2 className="text-3xl font-normal text-[#3F427B]">Seminar / <br /> Workshop</h2>
+                    <h2 className="text-3xl font-normal text-[#3F427B]">Lowongan Kerja / <br />Magang</h2>
                     <div className="grid justify-items-end">
                       <button className="group btn btn-sm btn-primary x-btn"><svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 ml-3 stroke-[#6171FE] group-hover:stroke-white" viewBox="0 0 24 24" strokeWidth="2">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -90,7 +131,8 @@ function Home() {
                     </div>
                   </div>
                 </div>
-              </a>{/* end of category card  */}
+              </a> */}
+              {/* end of category card  */}
 
             </div> {/* end of category wrapper */}
           </div> {/* end of category container */}

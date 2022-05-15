@@ -1,72 +1,41 @@
 import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
-import supabase from './config/supabase';
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-function Course() {
-  const userId = 'efcba67b-8a2f-41ea-8559-1f1f92a289c5';
+function Wishlist() {
+  let nav = useNavigate();
   const [search, setSearch] = useState("");
-  const [categoryId, setCategoryId] = useState("");
   const [getData, setGetData] = useState([]);
   
+  let test = {
+    data: { id: "1t4", title: " How to pass state in react-router-dom", tag: ["reactjs", "react-router-dom"]}
+ } 
   
   useEffect(() => {
-    getCategory();
+    searchingData();
   }, [getData])
 
-  const getCategory = async () => {
-    const { data, error } = await supabase
-    .from('category')
-    .select()
-    .eq('route','course')
-    .single();
-    setCategoryId(data.id);
-  }
 
-  // const detailPage = async () => {
-  //   await axios.post('http://localhost:8000/detail', {
-  //     data: 'data'
-  //   })
-  //   .then((response) => {
-  //     // console.log(response.data);
-  //     nav({pathname:`/detail`, state:response});
-  //   }, (error) => {
-  //     console.log(error);
-  //   });
-    
-  // }
 
-// find course
   const searchingData = async () => {
-    const url = 'http://localhost:8000/course/' + search;
+    console.log(search);
+    const url = 'http://localhost:8000/results/mobile';
+    // const url = 'http://localhost:8000/jobseeker/' + search;
 
     axios(url)
       .then(response => {
         const html = response.data
+        console.log('datanya', html);
         setGetData(html);
       })
-      
-      const { data, error } = await supabase
-      .from('history')
-      .insert([
-        {
-          name: search,
-          user_id: userId,
-          category_id: categoryId,
-        }
-      ])
-  
-    if (error) {
-      console.log(error.message);
-    }
   }
+  
 
 
-
-
-  return (
+ return(
     <>
       <section className="fixed z-50 top-0 left-0 right-0">
         <div className="navbar bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.07)]">
@@ -87,17 +56,19 @@ function Course() {
       </section>
 
       <section>
-        <div className=" mt-40">
-        <h1 className="text-center text-3xl font-normal">Temukan Kelas atau Bootcamp impianmu</h1>
-        <div className="form-control mt-12 bg-white self-center w-3/6 mx-auto drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] p-4 h-4/6 rounded-lg">
-          <div className="input-group">
-          <input value={search} onChange={e => setSearch(e.target.value)}  type="text" placeholder="Cari Kelas impianmu..." className="input input-bordered input-primary w-full"/>
-            <button onClick={() => searchingData()}  className="btn btn-square btn-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-            </button>
-          </div>
+        <div className=" mt-40 container mx-auto">
+        <h1 className="text-3xl font-bold">Wishlist</h1>
         </div>
-        </div>
+      </section>
+
+      <section>
+      <div class="container mx-auto mt-16">
+      <div class="tabs w-full">
+  <a class="tab tab-bordered pb-10 px-24 tab-active">Online Course / Bootcamp</a> 
+  <a class="tab tab-bordered pb-10 px-24">Seminar / Workshop</a> 
+  <a class="tab tab-bordered pb-10 px-24">Lowongan Kerja / Magang</a>
+</div>
+</div>
       </section>
 
 
@@ -118,19 +89,20 @@ function Course() {
                       <div className="card-actions flex mt-12">
                       <Link to="/detail" state={val.url} className="link  btn btn-primary w-full self-end font-bold no-underline">
                       Lihat
+                      {/* <button className="btn btn-primary w-full self-end font-bold" onClick={() => detailPage()}>Lihat</button> */}
                         </Link>
                       </div>
                       </div>
                     </div>
                     ))}
-              
+                
+                </div>
           </div>
-        </div>
 
       </section>
-
+     
     </>
-  );
+ );
 }
 
-export default Course;
+export default Wishlist;

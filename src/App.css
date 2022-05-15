@@ -32,7 +32,15 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.profilepic {
+  vertical-align: middle;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
 }

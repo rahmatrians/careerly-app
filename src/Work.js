@@ -2,15 +2,14 @@ import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
 import supabase from './config/supabase';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-function Course() {
+function Work() {
   const userId = 'efcba67b-8a2f-41ea-8559-1f1f92a289c5';
   const [search, setSearch] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [getData, setGetData] = useState([]);
-  
   
   useEffect(() => {
     getCategory();
@@ -20,34 +19,46 @@ function Course() {
     const { data, error } = await supabase
     .from('category')
     .select()
-    .eq('route','course')
+    .eq('route','work')
     .single();
     setCategoryId(data.id);
   }
 
   // const detailPage = async () => {
-  //   await axios.post('http://localhost:8000/detail', {
-  //     data: 'data'
-  //   })
-  //   .then((response) => {
-  //     // console.log(response.data);
-  //     nav({pathname:`/detail`, state:response});
-  //   }, (error) => {
-  //     console.log(error);
-  //   });
-    
+// console.log('detail cui',data);
+    // fetch("http://localhost:8000/detail", {
+    //   method: "POST",
+    //   headers: {'Content-Type': 'application/json'}, 
+    //   body: JSON.stringify(data)
+    // }).then(res => {
+    //   console.log("Request complete! response:", res);
+    // });
+
+
+    // await axios.post('http://localhost:8000/detail', {
+    //   data: 'data'
+    // })
+    // .then((response) => {
+    //   // console.log(response.data);
+    //   nav({pathname:`/detail`, state:response});
+    // }, (error) => {
+    //   console.log(error);
+    // });
   // }
 
-// find course
+
   const searchingData = async () => {
-    const url = 'http://localhost:8000/course/' + search;
+    // console.log(search);
+    // const url = 'http://localhost:8000/results/' + search;
+    const url = 'http://localhost:8000/jobseeker/' + search;
 
     axios(url)
       .then(response => {
         const html = response.data
+        console.log('datanya', html);
         setGetData(html);
       })
-      
+
       const { data, error } = await supabase
       .from('history')
       .insert([
@@ -62,11 +73,19 @@ function Course() {
       console.log(error.message);
     }
   }
+  
+  //  let dataKu = [
+  //     {nama : 'react js aja', harga : 'Rp. 400.000'},
+  //     {nama : 'flutter nih', harga : 'Rp. 220.000'},
+  //     {nama : 'react native ', harga : 'Rp. 220.000'},
+  //     {nama : 'vue js', harga : 'Rp. 220.000'},
+  //     {nama : 'svelte', harga : 'Rp. 220.000'},
+  //     {nama : 'node js', harga : 'Rp. 220.000'},
+  //   ];
 
 
 
-
-  return (
+ return(
     <>
       <section className="fixed z-50 top-0 left-0 right-0">
         <div className="navbar bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.07)]">
@@ -88,7 +107,7 @@ function Course() {
 
       <section>
         <div className=" mt-40">
-        <h1 className="text-center text-3xl font-normal">Temukan Kelas atau Bootcamp impianmu</h1>
+        <h1 className="text-center text-3xl font-normal">Temukan Pekerjaan impianmu</h1>
         <div className="form-control mt-12 bg-white self-center w-3/6 mx-auto drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] p-4 h-4/6 rounded-lg">
           <div className="input-group">
           <input value={search} onChange={e => setSearch(e.target.value)}  type="text" placeholder="Cari Kelas impianmu..." className="input input-bordered input-primary w-full"/>
@@ -109,28 +128,29 @@ function Course() {
                   <div key={idx} className=" card bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
                     <div className="grid justify-items-start">
                       <figure className="px-10 pt-10  mx-auto">
-                        <img src={'https://buildwithangga.com'+val.image} alt="Shoes" className="rounded-xl max-h-[150px]" />
+                        <img src={val.logo} alt="Shoes" className="rounded-xl max-h-[150px]" />
                       </figure>
                     </div>
                     <div className="card-body">
-                      <h2 className="text-xl font-bold text-[#3F427B]">{val.title}</h2>
-                      <p className="text-lg text-[#3F427B]">{val.harga}</p>
+                      <h2 className="text-xl font-bold text-[#3F427B]">{val.job}</h2>
+                      <p className="text-lg text-[#3F427B]">{val.location}</p>
                       <div className="card-actions flex mt-12">
-                      <Link to="/detail" state={val.url} className="link  btn btn-primary w-full self-end font-bold no-underline">
+                      <Link to="/workDetail" state={val} className="link  btn btn-primary w-full self-end font-bold no-underline">
                       Lihat
+                      {/* <button className="btn btn-primary w-full self-end font-bold" onClick={() => detailPage()}>Lihat</button> */}
                         </Link>
                       </div>
                       </div>
                     </div>
                     ))}
-              
+                
+                </div>
           </div>
-        </div>
 
       </section>
-
+     
     </>
-  );
+ );
 }
 
-export default Course;
+export default Work;
