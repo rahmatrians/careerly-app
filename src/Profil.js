@@ -2,32 +2,22 @@ import logo from './logo.svg';
 import './App.css';
 import React, { useEffect, useState, useRef } from 'react';
 import supabase from './config/supabase';
-import { useNavigate } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import ProfilePictDefault from './images/plus.svg';
 import base64 from 'base-64';
 
 function Profil() {
   const navigate = useNavigate();
-
-  let id = 'efcba67b-8a2f-41ea-8559-1f1f92a289c5';
-  const [data, setData] = useState([]);
+  const location = useLocation();
+  const [id, setId] = useState("");
   const [profilePictBase64, setProfilePictBase64] = useState("");
   const [profilePictTemp, setProfilePictTemp] = useState("");
   const [eventFiles, setEventFiles] = useState("");
 
   useEffect(() => {
-    getData();
+    console.log(location.state.id);
+    setId(location.state.id)
   }, []);
-
-  const getData = async () => {
-    const { data, error } = await supabase
-      .from('user')
-      .select()
-      .eq('id', id)
-      .single();
-
-    setData(data);
-  }
 
   const fileInput = useRef(null);
   const handleClick = (event) => {
