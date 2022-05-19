@@ -1,55 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Home from './Home';
-import Login from './Login';
-import Course from './Course';
-import CourseDetail from './CourseDetail';
-
-import UbahProfil from './UbahProfil';
-import SeminarDetail from './SeminarDetail';
-import DetailBootcamp from './DetailBootcamp';
-import DetailMagang from './DetailMagang';
 import reportWebVitals from './reportWebVitals';
-import Seminar from './Seminar';
-import Profil from './Profil';
-import Work from './Work';
-import Wishlist from './Wishlist';
-import Dashboard from './Dashboard';
-import Register from './Register';
-import RegisterNext from './RegisterNext';
-import SettingUser from './SettingUser';
-import WorkDetail from './WorkDetail';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import store from './redux/store';
+import { Provider as StoreProvider } from 'react-redux';
 
-
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      {/* <Course /> */}
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path="login" element={<Login />}></Route>
-        <Route path="course" element={<Course />} />
-        <Route path="detail" element={<CourseDetail />} />
-        <Route path="seminar" element={<Seminar />} />
-        <Route path="work" element={<Work />} />
-        <Route path="wishlist" element={<Wishlist />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="ubahprofil" element={<UbahProfil />} />
-        <Route path="register" element={<Register />} />
-        <Route path="profil" element={<Profil />} />
-        <Route path="RegisterNext" element={<RegisterNext />} />
-        <Route path="SeminarDetail" element={<SeminarDetail />} />
-        <Route path="DetailBootcamp" element={<DetailBootcamp />} />
-        <Route path="DetailMagang" element={<DetailMagang />} />
-        <Route path="settinguser" element={<SettingUser />} />
-        <Route path="workDetail" element={<WorkDetail />} />
-          {/* <Route path=":teamId" element={<Team />} /> */}
-          {/* <Route index element={<LeagueStandings />} /> */}
-      </Routes>
-    </BrowserRouter>
+        <StoreProvider store={store}>
+      <App/>
+        </StoreProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
