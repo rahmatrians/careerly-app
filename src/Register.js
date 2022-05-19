@@ -42,7 +42,7 @@ function Register() {
                     <label className="label" htmlFor="jenkel">
                         <span className="label-text">Password</span>
                     </label>
-                    <input type="text" value={password} onChange={e => setPassword(e.target.value)} placeholder="Ketikkan Password" className="input input-bordered w-full max-w-xs"></input>
+                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Ketikkan Password" className="input input-bordered w-full max-w-xs"></input>
                     <div className="card-actions justify-end">
                         {/* <Link to="/SeminarDetail" state={val} className="link  btn btn-primary w-full self-end font-bold no-underline">Lanjutkan</Link> */}
                         <button type="submit" className="btn btn-primary w-64 mx-auto mt-8 my-5">Lanjutkan</button>
