@@ -18,7 +18,7 @@ function WorkDetail() {
   }, [])
 
   const getDescription = (urlLink) => {
-    axios.post('http://localhost:8000/jobseeker-detail', {
+    axios.post('http://localhost:8000/linkedin-detail', {
       data: JSON.stringify(urlLink)
     })
       .then((response) => {

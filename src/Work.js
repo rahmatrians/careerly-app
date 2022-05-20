@@ -50,14 +50,29 @@ function Work() {
   const searchingData = async () => {
     // console.log(search);
     // const url = 'http://localhost:8000/results/' + search;
-    const url = 'http://localhost:8000/jobseeker/' + search;
+    const url1 = 'http://localhost:8000/linkedin/' + search;
+    const url2 = 'http://localhost:8000/lokerid/' + search;
 
-    axios(url)
+    let dataTemp = [];
+
+    await axios(url1)
       .then(response => {
         const html = response.data
-        console.log('datanya', html);
-        setGetData(html);
+        html.map((val,idx) => {
+          dataTemp.push(val);
+        })
       })
+
+      await axios(url2)
+      .then(response => {
+        const html = response.data
+        html.map((val,idx) => {
+          dataTemp.push(val);
+        })
+      })
+
+      await setGetData(dataTemp);
+      
 
       const { data, error } = await supabase
       .from('history')
