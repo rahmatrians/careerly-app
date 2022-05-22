@@ -50,7 +50,7 @@ function Routing() {
   console.log('ayoalh');
   useEffect(() => {
       const session = supabase.auth.session();
-      console.log((isEmpty(session.access_token) && storeItem.token == session.access_token) ? 'masih aktif' : 'expired cuk');
+      console.log((session.access_token !== null && storeItem.token == session.access_token) ? 'masih aktif' : 'expired cuk');
       console.log(storeItem);
       storeItem.token != session.access_token  &&  navigate('login');
   
