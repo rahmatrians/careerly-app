@@ -4,7 +4,6 @@ import '../CustomButton.css';
 function Header(data) {
 
 useEffect(() => {
-  console.log(data);
 }, []);
 
   return (
@@ -20,7 +19,9 @@ useEffect(() => {
             <li><a>Home</a></li>
             <li><a>Kategori</a></li>
             <li><a>Tentang Kami</a></li>
-            <li><a><button className="btn btn-primary ">{data.data}</button></a></li>
+            <li><a> {data.data.isLogin ? 'Hi,'+data.data.fullname : <><button className="btn btn-primary ">Login</button></>}
+          </a>
+          </li>
         </ul>
         </div>
     </div>

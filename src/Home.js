@@ -9,14 +9,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import Header from './components/Header';
 
 function Home() {
-  const userId = 'efcba67b-8a2f-41ea-8559-1f1f92a289c5';
   const storeItem = useSelector(state => state);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [getCategoryData, setGetCategoryData] = useState([]);
 
   useEffect(() => {
-    console.log(storeItem);
+    console.log('storeitem : ', storeItem);
     setLoading(true);
     getCategory();
     setLoading(false);
@@ -37,7 +36,7 @@ function Home() {
       .insert([
         {
           name: val.id,
-          user_id: userId,
+          user_id: storeItem.userId,
           category_id: val.id,
         }
       ])
@@ -52,8 +51,7 @@ function Home() {
 
   return (
     <>
-
-      <Header data={'test'} />
+      <Header data={{ fullname: storeItem.name, isLogin: storeItem.isLogin }} />
 
       <section>
         <div className=" mt-40">
