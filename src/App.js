@@ -51,9 +51,13 @@ function Routing() {
   useEffect(() => {
       const session = supabase.auth.session();
       console.log('yohoJ:',session);
-      console.log((session.access_token !== null && storeItem.token == session.access_token) ? 'masih aktif' : 'expired cuk');
       console.log(storeItem);
-      storeItem.token != session.access_token  &&  navigate('login');
+      if (session !== null) {
+        storeItem.token != session.access_token  &&  navigate('login');
+        console.log((session.access_token !== null && storeItem.token == session.access_token) ? 'masih aktif' : 'expired cuk');
+      }else{
+        navigate('login');
+      }
   
   //   window.onunload = () => {
   //     localStorage.clear();
