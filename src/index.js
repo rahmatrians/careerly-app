@@ -20,6 +20,8 @@ import Register from './Register';
 import RegisterNext from './RegisterNext';
 import SettingUser from './SettingUser';
 import WorkDetail from './WorkDetail';
+import ProfilAdmin from './ProfilAdmin';
+import UbahProfilAdmin from './UbahProfilAdmin';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
@@ -46,8 +48,10 @@ ReactDOM.render(
         <Route path="DetailMagang" element={<DetailMagang />} />
         <Route path="settinguser" element={<SettingUser />} />
         <Route path="workDetail" element={<WorkDetail />} />
-          {/* <Route path=":teamId" element={<Team />} /> */}
-          {/* <Route index element={<LeagueStandings />} /> */}
+        <Route path="ProfilAdmin" element={<ProfilAdmin />} />
+        <Route path="UbahProfilAdmin" element={<UbahProfilAdmin />} />
+        {/* <Route path=":teamId" element={<Team />} /> */}
+        {/* <Route index element={<LeagueStandings />} /> */}
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
