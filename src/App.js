@@ -23,7 +23,7 @@ import Register from './Register';
 import RegisterNext from './RegisterNext';
 import SettingUser from './SettingUser';
 import WorkDetail from './WorkDetail';
-
+import Feedback from './Feedback';
 
 // function AuthRoute() {
 //   const navigate = useNavigate();
@@ -107,6 +107,7 @@ const handleTabClosing = () => {
         <Route path="DetailMagang" element={<DetailMagang />} />
         <Route path="settinguser" element={<SettingUser />} />
         <Route path="workDetail" element={<WorkDetail />} />
+        <Route path="Feedback" element={<Feedback />} />
         {/* <Route path=":teamId" element={<Team />} /> */}
         {/* <Route index element={<LeagueStandings />} /> */}
         <Route index path="login" element={<Login />}></Route>
