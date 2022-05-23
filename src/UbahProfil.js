@@ -40,7 +40,7 @@ function UbahProfil() {
   const searchingData = () => {
     console.log(search);
     // const url = 'http://localhost:8000/results/' + search;
-    const url = 'http://localhost:8000/jobseeker/' + search;
+    const url = 'http://localhost:8000/linkedin/' + search;
 
     axios(url)
       .then(response => {

@@ -74,7 +74,6 @@ function UbahProfilAdmin() {
           <button className="btn btn-secondary text-white bg-red-500">Batal</button>
         </div>
       </section>
-
     </>
   );
 }
