@@ -24,6 +24,9 @@ import RegisterNext from './RegisterNext';
 import SettingUser from './SettingUser';
 import WorkDetail from './WorkDetail';
 import Feedback from './Feedback';
+import Laporan from './Laporan';
+import ProfilAdmin from './ProfilAdmin';
+import UbahProfilAdmin from './UbahProfilAdmin';
 
 // function AuthRoute() {
 //   const navigate = useNavigate();
@@ -108,6 +111,9 @@ const handleTabClosing = () => {
         <Route path="settinguser" element={<SettingUser />} />
         <Route path="workDetail" element={<WorkDetail />} />
         <Route path="Feedback" element={<Feedback />} />
+        <Route path="ProfilAdmin" element={<ProfilAdmin />} />
+        <Route path="UbahProfilAdmin" element={<UbahProfilAdmin />} />
+        <Route path="Laporan" element={<Laporan />} />
         {/* <Route path=":teamId" element={<Team />} /> */}
         {/* <Route index element={<LeagueStandings />} /> */}
         <Route index path="login" element={<Login />}></Route>
