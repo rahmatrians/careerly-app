@@ -52,14 +52,12 @@ function Routing() {
 
   console.log('ayoalh');
   useEffect(() => {
-    // localStorage.clear();
       const session = supabase.auth.session();
       console.log('yohoJ:',session);
       console.log(storeItem);
       if (session !== null) {
         storeItem.token != session.access_token  &&  navigate('login');
         console.log((session.access_token !== null && storeItem.token == session.access_token) ? 'masih aktif' : 'expired cuk');
-        session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
       }else{
         navigate('login');
       }
