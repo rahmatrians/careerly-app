@@ -125,10 +125,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-    
-      <div className="bg-[#000]">
         <Routing/>
-        </div>
       </BrowserRouter>
     </>
   );
