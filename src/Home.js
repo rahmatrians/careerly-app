@@ -63,7 +63,7 @@ function Home() {
             <div className="flex flex-row gap-x-8 mx-28">
 
               {getCategoryData.map((val) => (
-                <button key={val.id} onClick={() => history({ id: val.id, route: val.route })} className="flex-auto card w-44 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
+                <button key={val.id} onClick={() => history({ id: val.id, route: val.route })} className="flex-auto card w-44 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.)] grid content-between">
                   <div>
                     <div className="grid justify-items-start">
                       <figure className="px-10 pt-10">

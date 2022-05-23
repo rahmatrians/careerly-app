@@ -51,7 +51,11 @@ function Routing() {
   useEffect(() => {
     // localStorage.clear();
       const session = supabase.auth.session();
+<<<<<<< HEAD
       console.log('yohoJ:',session);
+=======
+      console.log((session.access_token != null && storeItem.token == session.access_token) ? 'masih aktif' : 'expired cuk');
+>>>>>>> parent of 3d1454e (testing access_token null or not)
       console.log(storeItem);
       if (session !== null) {
         storeItem.token != session.access_token  &&  navigate('login');
