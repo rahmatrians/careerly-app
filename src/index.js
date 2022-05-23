@@ -20,6 +20,7 @@ import Register from './Register';
 import RegisterNext from './RegisterNext';
 import SettingUser from './SettingUser';
 import WorkDetail from './WorkDetail';
+import Feedback from './Feedback';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
@@ -46,6 +47,7 @@ ReactDOM.render(
         <Route path="DetailMagang" element={<DetailMagang />} />
         <Route path="settinguser" element={<SettingUser />} />
         <Route path="workDetail" element={<WorkDetail />} />
+        <Route path="feedback" element={<Feedback />} />
           {/* <Route path=":teamId" element={<Team />} /> */}
           {/* <Route index element={<LeagueStandings />} /> */}
       </Routes>
