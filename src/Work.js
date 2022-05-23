@@ -4,12 +4,9 @@ import './CustomButton.css';
 import supabase from './config/supabase';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { useSelector} from 'react-redux';
-
-import Header from './components/Header';
 
 function Work() {
-  const storeItem = useSelector(state => state);
+  const userId = 'efcba67b-8a2f-41ea-8559-1f1f92a289c5';
   const [search, setSearch] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [getData, setGetData] = useState([]);
@@ -49,6 +46,16 @@ function Work() {
     // });
   // }
 
+  const shuffle = (array) => {
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
+
 
   const searchingData = async () => {
     // console.log(search);
@@ -74,7 +81,7 @@ function Work() {
         })
       })
 
-      await setGetData(dataTemp);
+      await setGetData(shuffle(dataTemp));
       
 
       const { data, error } = await supabase
@@ -82,7 +89,7 @@ function Work() {
       .insert([
         {
           name: search,
-          user_id: storeItem.userId,
+          user_id: userId,
           category_id: categoryId,
         }
       ])
@@ -105,8 +112,24 @@ function Work() {
 
  return(
     <>
-      <Header data={{ fullname: storeItem.name, isLogin: storeItem.isLogin }} />
-      
+      <section className="fixed z-50 top-0 left-0 right-0">
+        <div className="navbar bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.07)]">
+          <div className="container mx-auto">
+            <div className="flex-1">
+              <a className="btn btn-ghost normal-case text-xl font-bold">Careerly</a>
+            </div>
+            <div className="flex-none">
+              <ul className="menu menu-horizontal p-0">
+                <li><a>Home</a></li>
+                <li><a>Kategori</a></li>
+                <li><a>Tentang Kami</a></li>
+                <li><a><button className="btn btn-primary ">Login</button></a></li>
+              </ul>
+            </div>
+          </div>
+        </div> {/* end of top bar */}
+      </section>
+
       <section>
         <div className=" mt-40">
         <h1 className="text-center text-3xl font-normal">Temukan Pekerjaan impianmu</h1>

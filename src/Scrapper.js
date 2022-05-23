@@ -45,6 +45,32 @@ app.get('/course/:key', (req, res) => {
 
 })
 
+// find course
+app.get('/skillacademy/:key', (req, res) => {
+    const url = 'https://skillacademy.com/search?keyword=' + req.params.key;
+
+    const articles = [];
+
+    axios(url)
+        .then(response => {
+            const html = response.data
+            const $ = cheerio.load(html)
+            console.log(html);
+
+            $('.css-1k6pjn0', html).each(function () { //<-- cannot be a function expression
+                const title = $(this).find('h2.css-1oohd5r').text().trim();
+                // const url = $(this).find('a').attr('href');
+                // const harga = $(this).find('span.origin-price').text().trim();
+                // const image = $(this).find('img').attr('src');
+                articles.push({
+                    title
+                })
+            })
+            res.json(html)
+        }).catch(err => console.log(err))
+
+})
+
 app.get('/seminar/:key', (req, res) => {
     const url = 'https://ngampooz.com/event/read?page=1';
     // const url = 'https://jadwalevent.web.id/?s=teknologi';

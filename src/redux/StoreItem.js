@@ -20,9 +20,6 @@ const ItemReducer = (state = initialState, action) => {
         isLogin: action.payload.isLogin,
         userId: action.payload.userId,
         name: action.payload.name,
-        email: action.payload.email,
-        profilePict: action.payload.profilePict,
-        roleId: action.payload.roleId,
       }
       case TOKEN:
         return {

@@ -23,7 +23,10 @@ import Register from './Register';
 import RegisterNext from './RegisterNext';
 import SettingUser from './SettingUser';
 import WorkDetail from './WorkDetail';
-
+import Feedback from './Feedback';
+import Laporan from './Laporan';
+import ProfilAdmin from './ProfilAdmin';
+import UbahProfilAdmin from './UbahProfilAdmin';
 
 // function AuthRoute() {
 //   const navigate = useNavigate();
@@ -49,14 +52,12 @@ function Routing() {
 
   console.log('ayoalh');
   useEffect(() => {
-    // localStorage.clear();
       const session = supabase.auth.session();
       console.log('yohoJ:',session);
       console.log(storeItem);
       if (session !== null) {
         storeItem.token != session.access_token  &&  navigate('login');
         console.log((session.access_token !== null && storeItem.token == session.access_token) ? 'masih aktif' : 'expired cuk');
-        session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
       }else{
         navigate('login');
       }
@@ -107,6 +108,10 @@ const handleTabClosing = () => {
         <Route path="DetailMagang" element={<DetailMagang />} />
         <Route path="settinguser" element={<SettingUser />} />
         <Route path="workDetail" element={<WorkDetail />} />
+        <Route path="Feedback" element={<Feedback />} />
+        <Route path="ProfilAdmin" element={<ProfilAdmin />} />
+        <Route path="UbahProfilAdmin" element={<UbahProfilAdmin />} />
+        <Route path="Laporan" element={<Laporan />} />
         {/* <Route path=":teamId" element={<Team />} /> */}
         {/* <Route index element={<LeagueStandings />} /> */}
         <Route index path="login" element={<Login />}></Route>
