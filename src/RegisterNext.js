@@ -25,28 +25,31 @@ function RegisterNext() {
     }
 
     const saving = async () => {
-        const { data, error } = await supabase
-        .from('user')
-        .insert([
-            {
-                fullname: getData.fullname,
-                email: getData.email,
-                password: getData.password,
-                education_status: pendidikan,
-                birthdate: tanggalLahir,
-                phone_number: noHandphone,
-                city_residence: getData.kota,
-                gender: kelamin,
-                role_id: '5c918aeb-3814-4bff-9aa3-5f29edc92afe',
-            }
-        ])
+        const { user, session, error } = await supabase.auth.signUp({
+            email: getData.email,
+            password: getData.password,
+          })
 
-        if (error) {
-            console.log('error:', error.message);
+          if (error) {
+            console.log('error:',error);
         } else {
-            console.log('suksesss');
-            navigate('/profil');
-            // navigate('/profil', { state: {fullname:fullname, kota:kota, email:email, password:password} });
+            const { data, error:errRegister } = await supabase
+            .from('user')
+            .insert([
+                {
+                    fullname: getData.fullname,
+                    email: getData.email,
+                    education_status: pendidikan,
+                    birthdate: tanggalLahir,
+                    phone_number: noHandphone,
+                    city_residence: getData.kota,
+                    gender: kelamin,
+                    role_id: '5c918aeb-3814-4bff-9aa3-5f29edc92afe',
+                    user_uid: user.id,
+                }
+            ])
+            console.log('suksesss', data[0].id);
+            navigate('/profil', { state: {id:data[0].id} });
         }
     }
 

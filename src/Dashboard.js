@@ -7,13 +7,27 @@ import File from './images/iconly/File.svg';
 import Profile from './images/iconly/Profile.svg';
 import Feedback from './images/iconly/Feedback.svg';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { LOGIN } from './redux/StoreItem';
+
 function Dashboard() {
+  const dispatch = useDispatch();
+  const storeItem = useSelector(state => state);
   const [userData, setUserData] = useState([]);
   const [userCount, setUserCount] = useState("");
+  const [FeedbackCount, setFeedbackCount] = useState("");
   
+
   useEffect(() => {
     getData();
   }, [])
+
+  
+
+  const test = () => {
+    console.log('test = ',JSON.parse(localStorage.getItem('reduxState')));
+  }
+
 
   const getData = async () => {
     const { data, error, count } = await supabase
@@ -22,6 +36,12 @@ function Dashboard() {
 
     setUserData(data);
     setUserCount(count);
+
+    const { countFeedback } = await supabase
+      .from('user')
+      .select('*', { count: 'exact' })
+
+    setFeedbackCount(countFeedback);
   }
 
 
@@ -46,26 +66,26 @@ function Dashboard() {
 
 
         <div className="col-span-4 mx-24">
-        <a className="mt-12 btn btn-ghost normal-case text-xl text-right font-bold">Hi, Administrator</a>
+        <a className="mt-12 btn btn-ghost normal-case text-xl text-right font-bold">Hi, {storeItem.name}</a>
         <div className="grid grid-cols-3 gap-x-4 mt-12">
     
         <div className=" card p-8 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
         <div className="flex mb-5">
-          <p className="bg-[#FFEED6] text-[#FD795C] p-5 text-3xl font-bold rounded-xl ">{userCount}</p>
+          <p className="bg-[#FFEED6] text-[#FD795C] p-5 text-3xl font-bold rounded-xl ">{userCount ? userCount : 0}</p>
         </div>
           <p className="text-xl font-medium text-[#3F427B]">Total Pengguna</p>
         </div>
     
         <div className=" card p-8 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
         <div className="flex mb-5">
-          <p className="bg-[#D6DFFF] text-[#3F427B] p-5 text-3xl font-bold rounded-xl ">87</p>
+          <p className="bg-[#D6DFFF] text-[#3F427B] p-5 text-3xl font-bold rounded-xl ">{FeedbackCount ? FeedbackCount : 0}</p>
         </div>
           <p className="text-xl font-medium text-[#3F427B]">Feedback Pengguna</p>
         </div>
     
         <div className=" card p-8 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
         <div className="flex mb-5">
-          <p className="bg-[#FFD6E2] text-[#E82660] p-5 text-3xl font-bold rounded-xl ">1,304</p>
+          <p className="bg-[#FFD6E2] text-[#E82660] p-5 text-3xl font-bold rounded-xl ">1,407</p>
         </div>
           <p className="text-xl font-medium text-[#3F427B]">Kunjungan Hari Ini</p>
         </div>

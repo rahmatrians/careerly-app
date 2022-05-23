@@ -23,7 +23,7 @@ function Wishlist() {
   const searchingData = async () => {
     console.log(search);
     const url = 'http://localhost:8000/results/mobile';
-    // const url = 'http://localhost:8000/jobseeker/' + search;
+    // const url = 'http://localhost:8000/linkedin/' + search;
 
     axios(url)
       .then(response => {

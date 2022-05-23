@@ -69,7 +69,7 @@ app.get('/seminar/:key', (req, res) => {
 
 })
 
-app.get('/jobseeker/:key', (req, res) => {
+app.get('/linkedin/:key', (req, res) => {
     const url = 'https://www.linkedin.com/jobs/search/?keywords='+req.params.key+'&location=Indonesia&position=1&pageNum=0';
 
     const articles = [];
@@ -189,7 +189,7 @@ app.post('/course/detail', function (req, res) {
 
 
 
-app.post('/jobseeker-detail', function (req, res) {
+app.post('/linkedin-detail', function (req, res) {
     
     const url = req.body.data.replace(/"/g, '');
     

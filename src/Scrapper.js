@@ -70,7 +70,7 @@ app.get('/seminar/:key', (req, res) => {
 
 })
 
-app.get('/jobseeker/:key', (req, res) => {
+app.get('/linkedin/:key', (req, res) => {
     const url = 'https://www.linkedin.com/jobs/search/?keywords='+req.params.key+'&location=Indonesia&position=1&pageNum=0';
 
     const articles = [];
@@ -88,7 +88,7 @@ app.get('/jobseeker/:key', (req, res) => {
                 const logo = $(this).find('.artdeco-entity-image').attr('data-delayed-url');
                 const detail = $(this).find('a.base-card__full-link').attr('href');
                 articles.push({
-                    job, company, location, logo, detail
+                    job, company, location, logo, detail, source: 'linkedin'
                 })
             })
             res.json(articles)
@@ -111,11 +111,11 @@ app.get('/lokerid/:key', (req, res) => {
                 // const title = $(this).text()
                 const job = $(this).find('h3.media-heading a').text().trim();
                 const company = $(this).find('table tbody tr:nth-child(1) td:nth-child(2)').text().trim();
-                // const location = $(this).find('div.base-search-card__metadata span.job-search-card__location').text().trim();
-                const logo = $(this).find('img.avatar').attr('data-lazy-srcset').slice(0, -2).trim();
+                const location = $(this).find('table tbody tr:nth-child(3) td:nth-child(2)').text().trim();
+                const logo = $(this).find('.media .media-left img.avatar').attr('data-lazy-srcset').slice(0, -2).trim();
                 const detail = $(this).find('h3.media-heading a').attr('href');
                 articles.push({
-                   job,company, logo, detail
+                   job,company, location, logo, detail, source: 'lokerid'
                 })
             })
             res.json(articles)
@@ -204,7 +204,7 @@ app.post('/seminar-detail', function (req, res) {
 
 
 
-app.post('/jobseeker-detail', function (req, res) {
+app.post('/linkedin-detail', function (req, res) {
     
     const url = req.body.data.replace(/"/g, '');
     

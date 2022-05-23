@@ -1,16 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Home from './Home';
-import Login from './Login';
-import Course from './Course';
-import CourseDetail from './CourseDetail';
-
-import UbahProfil from './UbahProfil';
-import SeminarDetail from './SeminarDetail';
-import DetailBootcamp from './DetailBootcamp';
-import DetailMagang from './DetailMagang';
 import reportWebVitals from './reportWebVitals';
+<<<<<<< HEAD
 import Seminar from './Seminar';
 import Profil from './Profil';
 import Work from './Work';
@@ -23,10 +15,16 @@ import WorkDetail from './WorkDetail';
 import Laporan from './Laporan';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+=======
+import store from './redux/store';
+import { Provider as StoreProvider } from 'react-redux';
+>>>>>>> 8d0a08d297b37070d881e3d523b85fa26d20f504
 
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
+<<<<<<< HEAD
     <BrowserRouter>
       {/* <Course /> */}
       <Routes>
@@ -52,6 +50,11 @@ ReactDOM.render(
         {/* <Route index element={<LeagueStandings />} /> */}
       </Routes>
     </BrowserRouter>
+=======
+        <StoreProvider store={store}>
+      <App/>
+        </StoreProvider>
+>>>>>>> 8d0a08d297b37070d881e3d523b85fa26d20f504
   </React.StrictMode>,
   document.getElementById('root')
 );
