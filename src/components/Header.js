@@ -18,7 +18,7 @@ useEffect(() => {
         <ul className="menu menu-horizontal p-0">
             <li><a>Home</a></li>
             <li><a>Kategori</a></li>
-            <li><a>Tentang Kami</a></li>
+            <li><a href='#about'>Tentang Kami</a></li>
             <li><a> {data.data.isLogin ? 'Hi,'+data.data.fullname : <><button className="btn btn-primary ">Login</button></>}
           </a>
           </li>

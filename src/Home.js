@@ -130,8 +130,8 @@ function Home() {
             </div>
           </section>
 
-          <section className="h-screen flex mt-24">
-            <div className="bg-white self-center w-full drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] p-12 h-4/6">
+          <section className="h-screen flex mt-24" id="about">
+            <div className="bg-red-500 self-center w-full drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] p-12 h-4/6">
               <div className="container mx-auto h-full grid content-center">
                 <h1 className="font-bold text-3xl  font-normal">Apa itu Careerly?</h1>
                 <h4 className="mt-5 text-2xl">Careerly merupakan suatu platform Sistem Rekomendasi yang membantu anda
