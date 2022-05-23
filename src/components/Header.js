@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../CustomButton.css';
+import { Link } from "react-router-dom";
 
 function Header(data) {
 
@@ -19,8 +20,8 @@ useEffect(() => {
             <li><a>Home</a></li>
             <li><a>Kategori</a></li>
             <li><a href='#about'>Tentang Kami</a></li>
-            <li><a> {data.data.isLogin ? 'Hi,'+data.data.fullname : <><button className="btn btn-primary ">Login</button></>}
-          </a>
+            <li>{data.data.isLogin ? <><Link to="/settinguser" className="text-blue-700">Hi, {data.data.fullname}</Link></> : <><button className="btn btn-primary ">Login</button></>}
+            
           </li>
         </ul>
         </div>

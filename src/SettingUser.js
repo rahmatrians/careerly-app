@@ -2,50 +2,57 @@ import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import { BeakerIcon } from '@heroicons/react/solid';
 import './CustomButton.css';
+import supabase from './config/supabase';
+import { useSelector, useDispatch } from 'react-redux';
 
+import Header from './components/Header';
 
 function SettingUser() {
+  const storeItem = useSelector(state => state);
+  const [loading, setLoading] = useState(false);
+  const [userData, setUserData] = useState([]);
+
   useEffect(() => {
+    getUser();
   }, [])
+
+
+  const getUser = async () => {
+    setLoading(true);
+    const { data, error } = await supabase
+      .from('user')
+      .select()
+      .eq('id', storeItem.userId)
+      .single();
+
+    await setUserData(data);
+    setLoading(false)
+  }
+
+
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+    dispatch({ type: TOKEN, token: session.access_token }, { type: LOGIN, payload: { isLogin: true, userId: userData.id, name: userData.fullname, email: userData.email, profilePict: userData.profile_pic_url, roleId: userData.role_id } });
+
+  }
 
   return (
     <>
-      <section className="fixed z-50 top-0 left-0 right-0">
-        <div className="navbar bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.07)]">
-          <div className="container mx-auto">
-            <div className="flex-1">
-              <a className="btn btn-ghost normal-case text-xl font-bold">Careerly</a>
-            </div>
-            <div className="flex-none">
-              <ul className="menu menu-horizontal p-0">
-                <li><a>Home</a></li>
-                <li><a>Kategori</a></li>
-                <li><a>Blog</a></li>
-                <li><a>Tentang Kami</a></li>
-                <li><a>Hi, Ardi!
-                  <div className="avatar">
-                    <div className="w-12 rounded-full">
-                      <img src="https://api.lorem.space/image/face?hash=92310" />
-                    </div>
-                  </div>
-                </a> </li>
-              </ul>
-            </div>
-          </div>
-        </div> {/* end of top bar */}
-      </section>
+          {!loading &&
+        <>
+              <Header data={{ fullname: storeItem.name, isLogin: storeItem.isLogin }} />
 
       <section>
         <div className="container my-40 mx-20 mr-20 ">
           <div className="flex flex-row pl-10 pt-10 pr-10 mb-20 justify-center">
-            <img src="https://api.lorem.space/image/face?hash=92310" className="profilepic w-24 rounded-full" />
+            <img src={userData.profile_pic_url} className="w-24 rounded-full" />
             <div className="flex flex-col justify-center">
-              <span className="text-lg font-bold px-10 text-3xl font-normal">Fahmi Ardi Pratama</span>
-              <span className="text-lg px-10 mt-3 font-bold text-xl">fahamiardi@gmail.com</span>
+              <span className="text-lg font-bold px-10 text-2xl font-normal">{userData.fullname}</span>
+              <span className="text-lg px-10 mt-1 font-medium text-gray-500 text-xl">{userData.email}</span>
             </div>
             <div className="flex row ml-60 mt-10">
               <button class="btn btn-md  md:btn-md btn-primary text-white">Wishlist</button>
-              <button class="ml-5 btn btn-md  md:btn-md bg-red-500 text-white">Logout</button>
+              <button onClick={() => logout()} class="ml-5 btn btn-md  md:btn-md bg-red-500 text-white">Logout</button>
             </div>
           </div>
 
@@ -65,13 +72,13 @@ function SettingUser() {
                 </tr>
                 <tr>
                   <td className="font-normal text-xl">
-                    Tangerang Selatan
+                  {userData.city_residence}
                   </td>
                   <td className="font-normal text-xl">
-                    12 April 2001
+                  {userData.birthdate}
                   </td>
                   <td className="font-normal text-xl">
-                    SMA
+                  {userData.education_status}
                   </td>
                 </tr>
                 <div className="pt-10"> </div>
@@ -85,10 +92,10 @@ function SettingUser() {
                 </tr>
                 <tr>
                   <td className="font-normal text-xl">
-                    Laki - laki
+                  {userData.gender}
                   </td>
                   <td className="font-normal text-xl">
-                    0821 7880 2191
+                  {userData.phone_number}
                   </td>
                 </tr>
               </table>
@@ -99,6 +106,8 @@ function SettingUser() {
           </div>
         </div>
       </section>
+      </>
+      }
     </>
   );
 }
