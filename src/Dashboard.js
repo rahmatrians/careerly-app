@@ -49,7 +49,7 @@ function Dashboard() {
  return(
     <>
       <section className="grid grid-cols-5 gap-4">
-        <div className="relative card rounded-none h-screen bg-white w-96 drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
+        <div className="relative card rounded-none h-screen bg-white w-96 drop-shadow-[0_35px_35px_rgba(168,170,225,0.30)] grid content-between">
             <div className="mx-12">
             <a className="mt-12 btn btn-ghost normal-case text-3xl font-bold">Careerly</a>
             <div className="mt-24">
@@ -69,21 +69,21 @@ function Dashboard() {
         <a className="mt-12 btn btn-ghost normal-case text-xl text-right font-bold">Hi, {storeItem.name}</a>
         <div className="grid grid-cols-3 gap-x-4 mt-12">
     
-        <div className=" card p-8 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
+        <div className=" card p-8 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.30)]">
         <div className="flex mb-5">
           <p className="bg-[#FFEED6] text-[#FD795C] p-5 text-3xl font-bold rounded-xl ">{userCount ? userCount : 0}</p>
         </div>
           <p className="text-xl font-medium text-[#3F427B]">Total Pengguna</p>
         </div>
     
-        <div className=" card p-8 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
+        <div className=" card p-8 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.30)]">
         <div className="flex mb-5">
           <p className="bg-[#D6DFFF] text-[#3F427B] p-5 text-3xl font-bold rounded-xl ">{FeedbackCount ? FeedbackCount : 0}</p>
         </div>
           <p className="text-xl font-medium text-[#3F427B]">Feedback Pengguna</p>
         </div>
     
-        <div className=" card p-8 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
+        <div className=" card p-8 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.30)]">
         <div className="flex mb-5">
           <p className="bg-[#FFD6E2] text-[#E82660] p-5 text-3xl font-bold rounded-xl ">1,407</p>
         </div>

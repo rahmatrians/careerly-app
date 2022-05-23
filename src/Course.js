@@ -77,7 +77,7 @@ function Course() {
       <section>
         <div className=" mt-40">
         <h1 className="text-center text-3xl font-normal">Temukan Kelas atau Bootcamp impianmu</h1>
-        <div className="form-control mt-12 bg-white self-center w-3/6 mx-auto drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] p-4 h-4/6 rounded-lg">
+        <div className="form-control mt-12 bg-white self-center w-3/6 mx-auto drop-shadow-[0_35px_35px_rgba(168,170,225,0.30)] p-4 h-4/6 rounded-lg">
           <div className="input-group">
           <input value={search} onChange={e => setSearch(e.target.value)}  type="text" placeholder="Cari Kelas impianmu..." className="input input-bordered input-primary w-full"/>
             <button onClick={() => searchingData()}  className="btn btn-square btn-primary">
@@ -94,7 +94,7 @@ function Course() {
             <div className="grid grid-cols-3 gap-x-12 gap-y-20 mx-28">
 
                   {getData.map((val, idx) => (
-                  <div key={idx} className=" card bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
+                  <div key={idx} className=" card bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.30)] grid content-between">
                     <div className="grid justify-items-start">
                       <figure className="px-10 pt-10  mx-auto">
                         <img src={'https://buildwithangga.com'+val.image} alt="Shoes" className="rounded-xl max-h-[150px]" />
