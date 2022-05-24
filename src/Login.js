@@ -28,10 +28,6 @@ function Login() {
     validate();
   }
 
-  // const test = () => {
-  //   dispatch({ type: LOGIN, payload: { isLogin: true, userId: "gtau", name: "dd" } });
-  // }
-
   const validate = async () => {
     const { user, session, error } = await supabase.auth.signIn({
       email: email,
@@ -48,10 +44,12 @@ function Login() {
       const { data: userData, error: errorId } = await supabase
         .from('user')
         .select()
-        .eq('user_uid', user.id);
+        .eq('user_uid', user.id)
+        .single();
 
       if (!error) {
-        dispatch({ type: TOKEN, token: session.access_token }, { type: LOGIN, payload: { isLogin: true, userId: userData.id, name: userData.fullname, email: userData.email, profilePict: userData.profile_pic_url, roleId: userData.role_id } });
+        dispatch({ type: TOKEN, token: session.access_token });
+        dispatch({ type: LOGIN, payload: { isLogin: true, userId: userData.id, name: userData.fullname, email: userData.email, profilePict: userData.profile_pic_url, roleId: userData.role_id } });
         navigate('/');
       }
       //     // navigate('/profil', { state: { fullname: fullname, kota: kota, email: email, password: password } });

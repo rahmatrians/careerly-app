@@ -4,11 +4,16 @@ import { BeakerIcon } from '@heroicons/react/solid';
 import './CustomButton.css';
 import supabase from './config/supabase';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
+import { LOGIN, TOKEN } from './redux/StoreItem';
+import { Link } from "react-router-dom";
 
 import Header from './components/Header';
 
 function SettingUser() {
+  const navigate = useNavigate();
   const storeItem = useSelector(state => state);
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState([]);
 
@@ -24,16 +29,25 @@ function SettingUser() {
       .select()
       .eq('id', storeItem.userId)
       .single();
-
+    console.log(data);
     await setUserData(data);
     setLoading(false)
   }
-
+  
+  const wishlist = async () => {
+    const { data, error, count } = await supabase
+    .from('saved')
+    .select('*', { count: 'exact' })
+    .eq('user_id', storeItem.userId);
+  console.log(count,data);
+  }
 
   const logout = async () => {
     const { error } = await supabase.auth.signOut();
-    dispatch({ type: TOKEN, token: session.access_token }, { type: LOGIN, payload: { isLogin: true, userId: userData.id, name: userData.fullname, email: userData.email, profilePict: userData.profile_pic_url, roleId: userData.role_id } });
-
+    dispatch({ type: TOKEN, token: null });
+    dispatch({ type: LOGIN, payload: { isLogin: false, userId: null, name: null, email: null, profilePict: null, roleId: null } });
+    localStorage.clear();
+    navigate('/');
   }
 
   return (
@@ -51,7 +65,7 @@ function SettingUser() {
               <span className="text-lg px-10 mt-1 font-medium text-gray-500 text-xl">{userData.email}</span>
             </div>
             <div className="flex row ml-60 mt-10">
-              <button class="btn btn-md  md:btn-md btn-primary text-white">Wishlist</button>
+              <button onClick={() => wishlist()} class="btn btn-md  md:btn-md btn-primary text-white">Wishlist</button>
               <button onClick={() => logout()} class="ml-5 btn btn-md  md:btn-md bg-red-500 text-white">Logout</button>
             </div>
           </div>
@@ -100,7 +114,7 @@ function SettingUser() {
                 </tr>
               </table>
               <div className="card-actions justify-end">
-                <button className="btn btn-outline btn-primary">Ubah Profil</button>
+                <Link to="/ubahprofil"><button className="btn btn-outline btn-primary">Ubah Profil</button></Link>
               </div>
             </div>
           </div>

@@ -17,9 +17,9 @@ useEffect(() => {
         </div>
         <div className="flex-none">
         <ul className="menu menu-horizontal p-0">
-            <li><a>Home</a></li>
-            <li><a>Kategori</a></li>
-            <li><a href='#about'>Tentang Kami</a></li>
+            <li><a href='/'>Home</a></li>
+            <li><a href='/#category'>Kategori</a></li>
+            <li><a href='/#about'>Tentang Kami</a></li>
             <li>{data.data.isLogin ? <><Link to="/settinguser" className="text-blue-700">Hi, {data.data.fullname}</Link></> : <><button className="btn btn-primary ">Login</button></>}
             
           </li>

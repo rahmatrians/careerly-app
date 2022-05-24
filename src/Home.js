@@ -15,6 +15,16 @@ function Home() {
   const [getCategoryData, setGetCategoryData] = useState([]);
 
   useEffect(() => {
+    const session = supabase.auth.session();
+    if (session !== null) {
+      storeItem.token != session.access_token && navigate('login');
+      console.log((session.access_token !== null && storeItem.token == session.access_token) ? 'masih aktif' : 'expired cuk');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    } else {
+      localStorage.clear();
+      navigate('login');
+    }
+
     console.log('storeitem : ', storeItem);
     getCategory();
   }, [])
@@ -55,7 +65,7 @@ function Home() {
         <>
           <Header data={{ fullname: storeItem.name, isLogin: storeItem.isLogin }} />
 
-          <section>
+          <section id="category">
             <div className=" mt-40">
               <h1 className="text-center text-3xl font-normal">Bangun dan Ciptakan Karir Impianmu Bersama Careerly</h1>
               <h4 className="mt-5 text-center font-bold text-xl">because we care</h4>
