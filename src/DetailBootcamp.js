@@ -34,26 +34,26 @@ function DetailWorkshop() {
       </section>
 
       <section>
-        <div class="flex font-sans">
-          <div class="card card-compact w-96 bg-base-100 shadow-xl relative ml-52">
-            <img src={require('./images/python.png')} alt="" class="absolute inset-0 w-full h-full object-cover" />
+        <div className="flex font-sans">
+          <div className="card card-compact w-96 bg-base-100 shadow-xl relative ml-52">
+            <img src={require('./images/python.png')} alt="" className="absolute inset-0 w-full h-full object-cover" />
           </div>
-          <form class="flex-auto p-6 mr-56">
-            <div class="flex flex-wrap">
-              <h1 class="flex-auto text-lg font-semibold text-slate-900">
+          <form className="flex-auto p-6 mr-56">
+            <div className="flex flex-wrap">
+              <h1 className="flex-auto text-lg font-semibold text-slate-900">
                 Harga
               </h1>
-              <div class="w-full flex-none text-sm font-semibold text-slate-700 mt-2">
+              <div className="w-full flex-none text-sm font-semibold text-slate-700 mt-2">
                 Rp. 129.000
               </div>
             </div>
-            <div class="flex space-x-4 mb-6 text-sm font-medium">
-              <div class="flex-auto flex space-x-4 mt-10">
-                <button class="h-10 px-6 font-semibold rounded-md bg-black text-white" type="submit">
+            <div className="flex space-x-4 mb-6 text-sm font-medium">
+              <div className="flex-auto flex space-x-4 mt-10">
+                <button className="h-10 px-6 font-semibold rounded-md bg-black text-white" type="submit">
                   Tertarik
                 </button>
               </div>
-              <button class="flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200" type="button" aria-label="Like">
+              <button className="flex-none flex items-center justify-center w-9 h-9 rounded-md text-slate-300 border border-slate-200" type="button" aria-label="Like">
                 <svg width="20" height="20" fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd" clip-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
                 </svg>
@@ -62,14 +62,14 @@ function DetailWorkshop() {
           </form>
         </div>
 
-        <div class="mt-6 ml-52">
-          <button class="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
+        <div className="mt-6 ml-52">
+          <button className="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
             Tentang
           </button>
-          <button class="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
+          <button className="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
             Materi
           </button>
-          <button class="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
+          <button className="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
             Tools
           </button>
         </div>

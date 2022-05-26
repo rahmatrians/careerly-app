@@ -181,7 +181,7 @@ app.get('/kalibrr/:key', (req, res) => {
 
 app.post('/course-detail', function (req, res) {
     
-    const url = req.body.data;
+    const url = req.body.data.replace(/"/g, '');
     console.log(url);
     
     axios(url)
@@ -192,12 +192,11 @@ app.post('/course-detail', function (req, res) {
         
         const dataScrape = [];
         $('.container', html).each(function () { //<-- cannot be a function expression
-            const title = $(this).find('h1.header-primary').text().trim();
+            const title = $(this).find('.row:nth-child(2) .col-lg-6 h1.header-primary').text().trim();
             const price = $(this).find('.item-pricing h2.title').text().trim();
             const about = $(this).find('.tabs-content-nd #pills-home .col-lg-7:nth-child(1)').html();
-            
             dataScrape.push({
-            title, price, about
+            title,price, about
             })
         })
         res.json(dataScrape);
@@ -230,6 +229,7 @@ app.post('/seminar-detail', function (req, res) {
 
 
 
+// work detail
 app.post('/linkedin-detail', function (req, res) {
     
     const url = req.body.data.replace(/"/g, '');
@@ -242,15 +242,39 @@ app.post('/linkedin-detail', function (req, res) {
         
         const dataScrape = [];
         $('.core-section-container__content', html).each(function () {
-            const title = $(this).find('.show-more-less-html div').html();
+            const description = $(this).find('.show-more-less-html div').html();
             const jobType = $(this).find('ul.description__job-criteria-list li:nth-child(2) span').text().trim();
             dataScrape.push({
-            title,jobType
+            description,jobType
             })
         })
         res.json(dataScrape);
     }).catch(err => console.log('err'))      
 })
+
+app.post('/lokerid-detail', function (req, res) {
+    
+    const url = req.body.data.replace(/"/g, '');
+    
+    axios(url)
+    .then(response => {
+        const html = response.data
+        const $ = cheerio.load(html)
+        
+        
+        const dataScrape = [];
+        $('.entry-content', html).each(function () {
+            const description = $(this).find('.panel-default:nth-child(2) .panel-body').html();
+            const jobType = $(this).find('.panel-default:nth-child(1) .col-md-3:nth-child(4) a').text().trim();
+            dataScrape.push({
+            description,jobType
+            })
+        })
+        res.json(dataScrape);
+    }).catch(err => console.log('err'))      
+})
+
+
 
 
 

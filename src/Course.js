@@ -116,7 +116,7 @@ function Course() {
                       <h2 className="text-xl font-bold text-[#3F427B]">{val.title}</h2>
                       <p className="text-lg text-[#3F427B]">{val.harga}</p>
                       <div className="card-actions flex mt-12">
-                      <Link to="/detail" state={val.url} className="link  btn btn-primary w-full self-end font-bold no-underline">
+                      <Link to="/detail" state={val} className="link  btn btn-primary w-full self-end font-bold no-underline">
                       Lihat
                         </Link>
                       </div>

@@ -11,14 +11,21 @@ function WorkDetail() {
   const [url, setUrl] = useState([]);
   const [getResponse, setGetResponse] = useState([]);
 
-  useEffect(() => {
-    setGetData(location.state);
+  useEffect(async() => {
+    await setGetData(location.state);
     setUrl(location.state.detail);
     getDescription(location.state.detail);
   }, [])
 
   const getDescription = (urlLink) => {
-    axios.post('http://localhost:8000/linkedin-detail', {
+    let url ;
+    if (location.state.source == 'linkedin') {
+      url = 'http://localhost:8000/linkedin-detail';
+    } else if (location.state.source == 'lokerid') {
+      url = 'http://localhost:8000/lokerid-detail';
+    }
+
+    axios.post(url, {
       data: JSON.stringify(urlLink)
     })
       .then((response) => {
@@ -72,7 +79,7 @@ function WorkDetail() {
 
         <div className="mx-auto mb-16">
           {getResponse && (
-            <div dangerouslySetInnerHTML={{ __html: getResponse.title }}></div>
+            <div dangerouslySetInnerHTML={{ __html: getResponse.description }}></div>
           )}
         </div>
 

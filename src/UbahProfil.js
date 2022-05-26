@@ -1,14 +1,18 @@
 import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
-
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+
+import Header from './components/Header';
 
 function UbahProfil() {
   let nav = useNavigate();
   const [search, setSearch] = useState("");
   const [getData, setGetData] = useState([]);
+  const storeItem = useSelector(state => state);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
   }, [getData])
@@ -52,30 +56,10 @@ function UbahProfil() {
 
   return (
     <>
-      <section className="fixed z-50 top-0 left-0 right-0">
-        <div className="navbar bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.07)]">
-          <div className="container mx-auto">
-            <div className="flex-1">
-              <a className="btn btn-ghost normal-case text-xl font-bold">Careerly</a>
-            </div>
-            <div className="flex-none">
-              <ul className="menu menu-horizontal p-0">
-                <li><a>Home</a></li>
-                <li><a>Kategori</a></li>
-                <li><a>Blog</a></li>
-                <li><a>Tentang Kami</a></li>
-                <li><a>Hi, Ardi!
-                  <div className="avatar">
-                    <div className="w-12 rounded-full">
-                      <img src="https://api.lorem.space/image/face?hash=92310" />
-                    </div>
-                  </div>
-                </a> </li>
-              </ul>
-            </div>
-          </div>
-        </div> {/* end of top bar */}
-      </section>
+              {!loading &&
+        <>
+    <Header data={{ fullname: storeItem.name, isLogin: storeItem.isLogin }} />
+
       <section>
         <h2 className="font-inter font-bold text-2xl mx-60 mt-32">Ubah Profil</h2>
         <div className="grid gap-0 grid-cols-2">
@@ -88,7 +72,7 @@ function UbahProfil() {
               <span>Pilih</span>
             </label>
           </div>
-          <div class="form-control mt-5 ml-0">
+          <div className="form-control mt-5 ml-0">
             <label className="label" htmlFor="nama">
               <span className="label-text">Nama Lengkap</span>
             </label>
@@ -167,7 +151,8 @@ function UbahProfil() {
         </div>
 
       </section>
-
+      </>
+      }
     </>
   );
 }
