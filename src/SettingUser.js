@@ -65,8 +65,8 @@ function SettingUser() {
               <span className="text-lg px-10 mt-1 font-medium text-gray-500 text-xl">{userData.email}</span>
             </div>
             <div className="flex row ml-60 mt-10">
-              <button onClick={() => wishlist()} class="btn btn-md  md:btn-md btn-primary text-white">Wishlist</button>
-              <button onClick={() => logout()} class="ml-5 btn btn-md  md:btn-md bg-red-500 text-white">Logout</button>
+              <button onClick={() => wishlist()} className="btn btn-md  md:btn-md btn-primary text-white">Wishlist</button>
+              <button onClick={() => logout()} className="ml-5 btn btn-md  md:btn-md bg-red-500 text-white">Logout</button>
             </div>
           </div>
 

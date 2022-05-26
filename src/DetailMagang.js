@@ -59,17 +59,17 @@ function DetailMagang() {
 
         <div className="">
           <h4 className="font-bold w-8/12 mx-auto  ml-52">Skill Wajib</h4>
-          <div class="mt-4 ml-52">
-            <button class="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
+          <div className="mt-4 ml-52">
+            <button className="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
               ProgreSQL
             </button>
-            <button class="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
+            <button className="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
               Figma
             </button>
-            <button class="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
+            <button className="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
               Laravel
             </button>
-            <button class="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
+            <button className="h-8 px-6 font-semibold rounded-md border border-slate-200 text-slate-900 mr-4" type="button">
               PHP
             </button>
           </div>
@@ -82,8 +82,8 @@ function DetailMagang() {
         </div>
       </section>
 
-      <div class="card w-8/12 bg-white shadow-xl ml-52 my-10 ">
-        <div class="card-body">
+      <div className="card w-8/12 bg-white shadow-xl ml-52 my-10 ">
+        <div className="card-body">
           <h4 className="font-bold w-8/12  mb-2">
             Tentang Perusahaan<br></br>
           </h4>

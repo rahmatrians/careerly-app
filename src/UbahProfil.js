@@ -72,7 +72,7 @@ function UbahProfil() {
               <span>Pilih</span>
             </label>
           </div>
-          <div class="form-control mt-5 ml-0">
+          <div className="form-control mt-5 ml-0">
             <label className="label" htmlFor="nama">
               <span className="label-text">Nama Lengkap</span>
             </label>

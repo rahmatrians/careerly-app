@@ -62,11 +62,11 @@ function Wishlist() {
       </section>
 
       <section>
-      <div class="container mx-auto mt-16">
-      <div class="tabs w-full">
-  <a class="tab tab-bordered pb-10 px-24 tab-active">Online Course / Bootcamp</a> 
-  <a class="tab tab-bordered pb-10 px-24">Seminar / Workshop</a> 
-  <a class="tab tab-bordered pb-10 px-24">Lowongan Kerja / Magang</a>
+      <div className="container mx-auto mt-16">
+      <div className="tabs w-full">
+  <a className="tab tab-bordered pb-10 px-24 tab-active">Online Course / Bootcamp</a> 
+  <a className="tab tab-bordered pb-10 px-24">Seminar / Workshop</a> 
+  <a className="tab tab-bordered pb-10 px-24">Lowongan Kerja / Magang</a>
 </div>
 </div>
       </section>
