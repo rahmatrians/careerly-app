@@ -2,26 +2,37 @@ import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
 import supabase from './config/supabase';
-import Graph from './images/iconly/Graph.svg';
-import File from './images/iconly/File.svg';
-import Profile from './images/iconly/Profile.svg';
-import Feedback from './images/iconly/Feedback.svg';
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { LOGIN } from './redux/StoreItem';
+import Chart from "react-apexcharts";
 
 import SideNav from './components/SideNav';
 
 function Dashboard() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const storeItem = useSelector(state => state);
   const [userData, setUserData] = useState([]);
   const [userCount, setUserCount] = useState("");
   const [feedbackCount, setFeedbackCount] = useState("");
 
+  const [option, setOption] = useState({});
+  const [series, setSeries] = useState([]);
+  const [labels, setLabels] = useState([]);
+
+
 
   useEffect(() => {
+    const session = supabase.auth.session();
+    if (session !== null) {
+      storeItem.token != session.access_token && navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    } else {
+      localStorage.clear();
+      navigate('/login');
+    }
+
     getData();
   }, [])
 

@@ -1,20 +1,27 @@
 import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
-
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import supabase from './config/supabase';
 
 function Wishlist() {
-  let nav = useNavigate();
+  const navigate = useNavigate();
+  const storeItem = useSelector(state => state);
   const [search, setSearch] = useState("");
   const [getData, setGetData] = useState([]);
   
-  let test = {
-    data: { id: "1t4", title: " How to pass state in react-router-dom", tag: ["reactjs", "react-router-dom"]}
- } 
-  
   useEffect(() => {
+    const session = supabase.auth.session();
+    if (session !== null) {
+      storeItem.token != session.access_token  &&  navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    }else{
+      localStorage.clear();
+      navigate('/login');
+    }
+
     searchingData();
   }, [getData])
 
@@ -23,7 +30,6 @@ function Wishlist() {
   const searchingData = async () => {
     console.log(search);
     const url = 'http://localhost:8000/results/mobile';
-    // const url = 'http://localhost:8000/linkedin/' + search;
 
     axios(url)
       .then(response => {

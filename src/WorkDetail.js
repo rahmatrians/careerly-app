@@ -1,17 +1,29 @@
 import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
-
-import { useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import supabase from './config/supabase';
 import axios from 'axios';
 
 function WorkDetail() {
+  const navigate = useNavigate();
+  const storeItem = useSelector(state => state);
   const location = useLocation();
   const [getData, setGetData] = useState([]);
   const [url, setUrl] = useState([]);
   const [getResponse, setGetResponse] = useState([]);
 
-  useEffect(async() => {
+  useEffect(async () => {
+    const session = supabase.auth.session();
+    if (session !== null) {
+      storeItem.token != session.access_token  &&  navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    }else{
+      localStorage.clear();
+      navigate('/login');
+    }
+
     await setGetData(location.state);
     setUrl(location.state.detail);
     getDescription(location.state.detail);

@@ -2,17 +2,28 @@ import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
 import supabase from './config/supabase';
-import { Link } from "react-router-dom";
 import axios from 'axios';
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 function Seminar() {
-  const userId = 'efcba67b-8a2f-41ea-8559-1f1f92a289c5';
+  const navigate = useNavigate();
+  const storeItem = useSelector(state => state);
   const [search, setSearch] = useState("");
   const [categoryId, setCategoryId] = useState("");
   const [getData, setGetData] = useState([]);
   
   
   useEffect(() => {
+    const session = supabase.auth.session();
+    if (session !== null) {
+      storeItem.token != session.access_token  &&  navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    }else{
+      localStorage.clear();
+      navigate('/login');
+    }
+
     getCategory();
   }, [getData])
 
@@ -41,7 +52,7 @@ function Seminar() {
       .insert([
         {
           name: search,
-          user_id: userId,
+          user_id: storeItem.userId,
           category_id: categoryId,
         }
       ])

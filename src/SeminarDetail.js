@@ -1,17 +1,30 @@
 import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
-
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import supabase from './config/supabase';
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
 
 function SeminarDetail() {
+  const navigate = useNavigate();
+  const storeItem = useSelector(state => state);
   const location = useLocation();
   const [getData, setGetData] = useState([]);
   const [url, setUrl] = useState([]);
   const [getResponse, setGetResponse] = useState([]);
 
   useEffect(() => {
+    const session = supabase.auth.session();
+    if (session !== null) {
+      storeItem.token != session.access_token  &&  navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    }else{
+      localStorage.clear();
+      navigate('/login');
+    }
+
     setGetData(location.state);
     setUrl(location.state.url);
     getDescription(location.state.url);

@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
-
+import supabase from './config/supabase';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 

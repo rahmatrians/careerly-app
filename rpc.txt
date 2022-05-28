@@ -1,0 +1,22 @@
+CREATE OR REPLACE FUNCTION searchCount()
+ RETURNS TABLE(category_name varchar, name varchar, history_total bigint)
+ LANGUAGE sql
+AS $function$
+ 	SELECT category.name AS category_name, history.name, COUNT(history.name) AS history_total
+	FROM history
+	JOIN category ON history.category_id = category.id
+  WHERE history.name != ''
+	GROUP BY history.name, category_name;
+$function$;	
+
+
+CREATE OR REPLACE FUNCTION categoryCount()
+ RETURNS TABLE(category_name varchar, category_total bigint)
+ LANGUAGE sql
+AS $function$
+ 	SELECT category.name AS category_name, COUNT(history.category_id) AS category_total
+	FROM history
+	JOIN category ON history.category_id = category.id
+  WHERE history.name != ''
+	GROUP BY category_name;
+$function$;	

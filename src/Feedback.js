@@ -4,14 +4,25 @@ import './CustomButton.css';
 import supabase from './config/supabase';
 import Circle from "./images/Circle.svg";
 import { useSelector } from 'react-redux';
+import { Link, useNavigate } from "react-router-dom";
 
 import SideNav from './components/SideNav';
 
 function Feedback() {
+    const navigate = useNavigate();
     const storeItem = useSelector(state => state);
     const [userData, setUserData] = useState([]);
 
     useEffect(() => {
+        const session = supabase.auth.session();
+        if (session !== null) {
+          storeItem.token != session.access_token  &&  navigate('/login');
+          session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+        }else{
+          localStorage.clear();
+          navigate('/login');
+        }
+        
         getData();
     }, [])
 

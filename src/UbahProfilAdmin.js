@@ -2,16 +2,28 @@ import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
 import supabase from './config/supabase';
-import Graph from './images/iconly/Graph.svg';
-import File from './images/iconly/File.svg';
-import Profile from './images/iconly/Profile.svg';
-import Feedback from './images/iconly/Feedback.svg';
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+
+import SideNav from './components/SideNav';
 
 function UbahProfilAdmin() {
+  const navigate = useNavigate();
+  const storeItem = useSelector(state => state);
+
   const [userData, setUserData] = useState([]);
   const [userCount, setUserCount] = useState("");
 
   useEffect(() => {
+    const session = supabase.auth.session();
+    if (session !== null) {
+      storeItem.token != session.access_token  &&  navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    }else{
+      localStorage.clear();
+      navigate('/login');
+    }
+
     getData();
   }, [])
 
@@ -28,23 +40,20 @@ function UbahProfilAdmin() {
 
   return (
     <>
-      <section className="grid grid-cols-5 gap-4">
-        <div className="relative card rounded-none h-screen bg-white w-96 drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)] grid content-between">
-          <div className="mx-12">
-            <a className="mt-12 btn btn-ghost normal-case text-3xl font-bold">Careerly</a>
-            <div className="mt-24">
-              <ul className="menu mx-auto w-full">
-                <li><a className="rounded-xl"><img src={Graph} /> Ringkasan</a></li>
-                <li><a className="rounded-xl"><img src={File} /> Laporan</a></li>
-                <li><a className="active rounded-xl font-bold"><img src={Profile} /> Profile</a></li>
-                <li><a className="rounded-xl"><img src={Feedback} /> Feedback</a></li>
-              </ul>
-              <button className="absolute inset-x-12 bottom-10 btn btn-danger bg-red-500 text-white">Logout</button>
-            </div>
-          </div>
-        </div>
+                <div className='grid grid-cols-12'>
+                <div className="relative col-span-3">
+                    <SideNav data="4" />
+                </div>
 
-        <div className="col-span-4 mx-24">
+                <section className="relative col-span-9">
+                    <div className="grid grid-cols-5 gap-4">
+                        <div className="col-span-4">
+                            <div className="flex flex-row justify-between my-12">
+                                <a className="mt-12 btn btn-ghost normal-case text-3xl font-bold">Ubah Profil</a>
+                                <a className="mt-12 btn btn-ghost normal-case text-xl text-right font-medium">Hi,{storeItem.name}</a>
+                            </div>
+
+        <div className="col-span-4">
           <a className="mt-12 btn btn-ghost normal-case text-xl text-right font-bold">Profile</a>
           <div className="grid grid-cols-3 gap-x-4 mt-12">
           </div>
@@ -73,7 +82,10 @@ function UbahProfilAdmin() {
           <button className="btn btn-primary ml-4 mr-28 mt-10 text-white">Simpan</button>
           <button className="btn btn-secondary text-white bg-red-500">Batal</button>
         </div>
+        </div>
+        </div>
       </section>
+        </div>
     </>
   );
 }

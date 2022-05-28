@@ -4,9 +4,9 @@ import { BeakerIcon } from '@heroicons/react/solid';
 import './CustomButton.css';
 import supabase from './config/supabase';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from "react-router-dom";
 import { LOGIN, TOKEN } from './redux/StoreItem';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 import Header from './components/Header';
 
@@ -23,6 +23,15 @@ function SettingUser() {
 
 
   const getUser = async () => {
+    const session = supabase.auth.session();
+    if (session !== null) {
+      storeItem.token != session.access_token  &&  navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    }else{
+      localStorage.clear();
+      navigate('/login');
+    }
+
     setLoading(true);
     const { data, error } = await supabase
       .from('user')

@@ -2,17 +2,18 @@ import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
 import supabase from './config/supabase';
-import { useLocation } from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+
 import axios from 'axios';
 
 import Header from './components/Header';
 
 function CourseDetail() {
-  const userId = 'efcba67b-8a2f-41ea-8559-1f1f92a289c5';
-  const categoryId = 'b1167659-1242-4114-abe0-9970010d7f87';
+  const navigate = useNavigate();
   const storeItem = useSelector(state => state);
   const location = useLocation();
+  const categoryId = 'b1167659-1242-4114-abe0-9970010d7f87';
   const [url, setUrl] = useState([]);
   const [loading, setLoading] = useState(false);
   const [getData, setGetData] = useState([]);
@@ -20,6 +21,16 @@ function CourseDetail() {
   const [saved, setSaved] = useState(false);
   
   useEffect(() => {
+        const session = supabase.auth.session();
+    console.log(storeItem);
+    if (session !== null) {
+      storeItem.token != session.access_token  &&  navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    }else{
+      localStorage.clear();
+      navigate('/login');
+    }
+
     setUrl(location.state.url);
     setGetData(location.state);
     getDescription(location.state.url);
