@@ -1,17 +1,28 @@
 import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
-import supabase from './config/supabase';
 import { useSelector } from 'react-redux';
+import { Link, useNavigate } from "react-router-dom";
+import supabase from './config/supabase';
 
 import SideNav from './components/SideNav';
 
 function ProfilAdmin() {
+  const navigate = useNavigate();
   const storeItem = useSelector(state => state);
   const [userData, setUserData] = useState([]);
   const [userCount, setUserCount] = useState("");
 
   useEffect(() => {
+    const session = supabase.auth.session();
+    if (session !== null) {
+      storeItem.token != session.access_token  &&  navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    }else{
+      localStorage.clear();
+      navigate('/login');
+    }
+
     getData();
   }, [])
 
@@ -19,6 +30,8 @@ function ProfilAdmin() {
     const { data, error, count } = await supabase
       .from('user')
       .select('*', { count: 'exact' })
+      .eq('id', storeItem.userId)
+      .single();
 
     setUserData(data);
     setUserCount(count);
@@ -45,7 +58,7 @@ function ProfilAdmin() {
           </div>
           <div className="container mx-auto">
             <div className="flex flex-row pl-10 justify-left">
-              <img src="https://api.lorem.space/image/face?hash=92310" className="profilepic w-24 rounded-full" />
+              <img src={"https://api.lorem.space/image/face?hash=92310"} className="profilepic w-24 rounded-full" />
               <div className="flex flex-col justify-left">
                 <span className="text-lg font-bold px-10 mt-7 text-3xl font-normal">Administrator</span>
                 <span className="text-lg px-10 mt-2 font-bold text-xl">administrator@gmail.com</span>

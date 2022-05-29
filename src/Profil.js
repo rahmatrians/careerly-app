@@ -4,10 +4,12 @@ import React, { useEffect, useState, useRef } from 'react';
 import supabase from './config/supabase';
 import { useLocation,useNavigate } from 'react-router-dom';
 import ProfilePictDefault from './images/plus.svg';
+import { useSelector } from 'react-redux';
 import base64 from 'base-64';
 
 function Profil() {
   const navigate = useNavigate();
+  const storeItem = useSelector(state => state);
   const location = useLocation();
   const [id, setId] = useState("");
   const [profilePictBase64, setProfilePictBase64] = useState("");
@@ -15,6 +17,15 @@ function Profil() {
   const [eventFiles, setEventFiles] = useState("");
 
   useEffect(() => {
+    const session = supabase.auth.session();
+    if (session !== null) {
+      storeItem.token != session.access_token  &&  navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    }else{
+      localStorage.clear();
+      navigate('/login');
+    }
+    
     console.log(location.state.id);
     setId(location.state.id)
   }, []);

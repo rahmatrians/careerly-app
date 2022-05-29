@@ -15,17 +15,20 @@ function Home() {
   const [getCategoryData, setGetCategoryData] = useState([]);
 
   useEffect(() => {
-    const session = supabase.auth.session();
-    if (session !== null) {
-      storeItem.token != session.access_token && navigate('login');
-      console.log((session.access_token !== null && storeItem.token == session.access_token) ? 'masih aktif' : 'expired cuk');
-      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
-    } else {
-      localStorage.clear();
-      navigate('login');
+    console.log(storeItem);
+    if (storeItem) {
+      storeItem.userId == '27c312da-9c39-45b7-b9d3-93cfd7a387d3' && navigate('/dashboard');
     }
+    // const session = supabase.auth.session();
+    // if (session !== null) {
+    //   storeItem.token != session.access_token && navigate('login');
+    //   console.log((session.access_token !== null && storeItem.token == session.access_token) ? 'masih aktif' : 'expired cuk');
+    //   session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    // } else {
+    //   localStorage.clear();
+    //   navigate('login');
+    // }
 
-    console.log('storeitem : ', storeItem);
     getCategory();
   }, [])
 

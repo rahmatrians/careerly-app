@@ -4,9 +4,9 @@ import { BeakerIcon } from '@heroicons/react/solid';
 import './CustomButton.css';
 import supabase from './config/supabase';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from "react-router-dom";
 import { LOGIN, TOKEN } from './redux/StoreItem';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 
 import Header from './components/Header';
 
@@ -18,11 +18,21 @@ function SettingUser() {
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
+    console.log(storeItem);
     getUser();
   }, [])
 
 
   const getUser = async () => {
+    const session = supabase.auth.session();
+    if (session !== null) {
+      storeItem.token != session.access_token  &&  navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    }else{
+      localStorage.clear();
+      navigate('/login');
+    }
+
     setLoading(true);
     const { data, error } = await supabase
       .from('user')
@@ -62,7 +72,7 @@ function SettingUser() {
             <img src={userData.profile_pic_url} className="w-24 rounded-full" />
             <div className="flex flex-col justify-center">
               <span className="text-lg font-bold px-10 text-2xl font-normal">{userData.fullname}</span>
-              <span className="text-lg px-10 mt-1 font-medium text-gray-500 text-xl">{userData.email}</span>
+              <span className="text-lg px-10 mt-1 font-medium text-gray-500 text-xl">{storeItem.roleId == '189c2b10-ad8e-417b-98aa-1a95418aacb9' ? 'guest@gmail.com' : userData.email}</span>
             </div>
             <div className="flex row ml-60 mt-10">
               <button onClick={() => wishlist()} className="btn btn-md  md:btn-md btn-primary text-white">Wishlist</button>

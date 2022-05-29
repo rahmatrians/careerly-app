@@ -4,17 +4,26 @@ import './CustomButton.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
-
+import supabase from './config/supabase';
 import Header from './components/Header';
 
 function UbahProfil() {
-  let nav = useNavigate();
+  let navigate = useNavigate();
+  const storeItem = useSelector(state => state);
   const [search, setSearch] = useState("");
   const [getData, setGetData] = useState([]);
-  const storeItem = useSelector(state => state);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const session = supabase.auth.session();
+    if (session !== null) {
+      storeItem.token != session.access_token  &&  navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    }else{
+      localStorage.clear();
+      navigate('/login');
+    }
+
   }, [getData])
 
 
@@ -33,7 +42,7 @@ function UbahProfil() {
     })
       .then((response) => {
         console.log(response.data);
-        nav({ pathname: `/detail`, state: data });
+        navigate({ pathname: `/detail`, state: data });
       }, (error) => {
         console.log(error);
       });

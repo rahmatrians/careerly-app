@@ -1,17 +1,32 @@
 import logo from './logo.svg';
 import React, { useEffect, useState } from 'react';
 import './CustomButton.css';
-
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import supabase from './config/supabase';
 import { useLocation } from "react-router-dom";
 import axios from 'axios';
 
+import Header from './components/Header';
+
 function SeminarDetail() {
+  const navigate = useNavigate();
+  const storeItem = useSelector(state => state);
   const location = useLocation();
   const [getData, setGetData] = useState([]);
   const [url, setUrl] = useState([]);
   const [getResponse, setGetResponse] = useState([]);
 
   useEffect(() => {
+    const session = supabase.auth.session();
+    if (session !== null) {
+      storeItem.token != session.access_token  &&  navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    }else{
+      localStorage.clear();
+      navigate('/login');
+    }
+
     setGetData(location.state);
     setUrl(location.state.url);
     getDescription(location.state.url);
@@ -32,23 +47,7 @@ function SeminarDetail() {
   return (
     <>
 
-      <section className="fixed z-50 top-0 left-0 right-0">
-        <div className="navbar bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.07)]">
-          <div className="container mx-auto">
-            <div className="flex-1">
-              <a className="btn btn-ghost normal-case text-xl font-bold">Careerly</a>
-            </div>
-            <div className="flex-none">
-              <ul className="menu menu-horizontal p-0">
-                <li><a>Home</a></li>
-                <li><a>Kategori</a></li>
-                <li><a>Tentang Kami</a></li>
-                <li><a><button className="btn btn-primary ">Login</button></a></li>
-              </ul>
-            </div>
-          </div>
-        </div> {/* end of top bar */}
-      </section>
+<Header data={{ fullname: storeItem.name, isLogin: storeItem.isLogin }} />
 
       <section>
         <div className=" mt-40 mb-20">
