@@ -41,7 +41,7 @@ function Course() {
   }
 
   // const detailPage = async () => {
-  //   await axios.post('http://localhost:8000/detail', {
+  //   await axios.post('https://careerly-service.herokuapp.com/detail', {
   //     data: 'data'
   //   })
   //   .then((response) => {
@@ -55,7 +55,7 @@ function Course() {
 
 // find course
   const searchingData = async () => {
-    const url = 'http://localhost:8000/course/' + search;
+    const url = 'https://careerly-service.herokuapp.com/course/' + search;
 
     axios(url)
       .then(response => {

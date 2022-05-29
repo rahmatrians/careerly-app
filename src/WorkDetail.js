@@ -34,9 +34,9 @@ function WorkDetail() {
   const getDescription = (urlLink) => {
     let url ;
     if (location.state.source == 'linkedin') {
-      url = 'http://localhost:8000/linkedin-detail';
+      url = 'https://careerly-service.herokuapp.com/linkedin-detail';
     } else if (location.state.source == 'lokerid') {
-      url = 'http://localhost:8000/lokerid-detail';
+      url = 'https://careerly-service.herokuapp.com/lokerid-detail';
     }
 
     axios.post(url, {

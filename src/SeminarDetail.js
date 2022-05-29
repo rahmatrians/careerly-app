@@ -33,7 +33,7 @@ function SeminarDetail() {
   }, [])
 
   const getDescription = (urlLink) => {
-    axios.post('http://localhost:8000/seminar-detail', {
+    axios.post('https://careerly-service.herokuapp.com/seminar-detail', {
       data: JSON.stringify(urlLink)
     })
       .then((response) => {

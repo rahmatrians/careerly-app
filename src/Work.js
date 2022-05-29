@@ -38,7 +38,7 @@ function Work() {
 
   // const detailPage = async () => {
 // console.log('detail cui',data);
-    // fetch("http://localhost:8000/detail", {
+    // fetch("https://careerly-service.herokuapp.com/detail", {
     //   method: "POST",
     //   headers: {'Content-Type': 'application/json'}, 
     //   body: JSON.stringify(data)
@@ -47,7 +47,7 @@ function Work() {
     // });
 
 
-    // await axios.post('http://localhost:8000/detail', {
+    // await axios.post('https://careerly-service.herokuapp.com/detail', {
     //   data: 'data'
     // })
     // .then((response) => {
@@ -70,9 +70,9 @@ function Work() {
 
 
   const searchingData = async () => {
-    // const url = 'http://localhost:8000/results/' + search;
-    const url1 = 'http://localhost:8000/linkedin/' + search;
-    const url2 = 'http://localhost:8000/lokerid/' + search;
+    // const url = 'https://careerly-service.herokuapp.com/results/' + search;
+    const url1 = 'https://careerly-service.herokuapp.com/linkedin/' + search;
+    const url2 = 'https://careerly-service.herokuapp.com/lokerid/' + search;
 
     let dataTemp = [];
 

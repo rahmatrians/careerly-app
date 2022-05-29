@@ -29,7 +29,7 @@ function UbahProfil() {
 
   const detailPage = async (data) => {
     console.log('detail cui', data);
-    // fetch("http://localhost:8000/detail", {
+    // fetch("https://careerly-service.herokuapp.com/detail", {
     //   method: "POST",
     //   headers: {'Content-Type': 'application/json'}, 
     //   body: JSON.stringify(data)
@@ -37,7 +37,7 @@ function UbahProfil() {
     //   console.log("Request complete! response:", res);
     // });
 
-    await axios.post('http://localhost:8000/detail', {
+    await axios.post('https://careerly-service.herokuapp.com/detail', {
       data: data
     })
       .then((response) => {
@@ -52,8 +52,8 @@ function UbahProfil() {
 
   const searchingData = () => {
     console.log(search);
-    // const url = 'http://localhost:8000/results/' + search;
-    const url = 'http://localhost:8000/linkedin/' + search;
+    // const url = 'https://careerly-service.herokuapp.com/results/' + search;
+    const url = 'https://careerly-service.herokuapp.com/linkedin/' + search;
 
     axios(url)
       .then(response => {

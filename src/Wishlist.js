@@ -29,7 +29,7 @@ function Wishlist() {
 
   const searchingData = async () => {
     console.log(search);
-    const url = 'http://localhost:8000/results/mobile';
+    const url = 'https://careerly-service.herokuapp.com/results/mobile';
 
     axios(url)
       .then(response => {
