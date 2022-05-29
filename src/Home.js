@@ -15,6 +15,10 @@ function Home() {
   const [getCategoryData, setGetCategoryData] = useState([]);
 
   useEffect(() => {
+    console.log(storeItem);
+    if (storeItem) {
+      storeItem.userId == '27c312da-9c39-45b7-b9d3-93cfd7a387d3' && navigate('/dashboard');
+    }
     // const session = supabase.auth.session();
     // if (session !== null) {
     //   storeItem.token != session.access_token && navigate('login');

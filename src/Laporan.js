@@ -94,9 +94,9 @@ function Laporan() {
                                     <div className="grid grid-cols-2 mt-5">
                                         <div className="donut">
                                             <a className="normal-case text-l text-left">Kategori Paling Dicari</a>
-                                            <Chart options={optionsCat} series={seriesCat} type="donut" className="mt-6" width="380" />
+                                            <Chart options={optionsCat} series={seriesCat} type="donut" className="mt-6" width="480" />
                                         </div>
-                                        <Link to="/laporancategory" className="btn btn-active btn-primary mx-auto mt-0 w-20 mr-0">Lihat</Link>
+                                        <Link to="/laporancategory" className="btn btn-primary mx-auto mt-0 w-20 mr-0">Lihat</Link>
                                     </div>
                                 </div>
                             </div>
@@ -105,9 +105,9 @@ function Laporan() {
                                     <div className="grid grid-cols-2 gap-96 mt-5">
                                         <div className="donut">
                                             <a className="normal-case text-l text-left">Pencarian Kategori Terbanyak</a>
-                                            <Chart options={optionsSrc} series={seriesSrc} type="donut" className="mt-6" width="480" />
+                                            <Chart options={optionsSrc} series={seriesSrc} type="donut" className="mt-6" width="400" />
                                         </div>
-                                        <Link to="/laporansearched" className="btn btn-active btn-primary mx-auto mt-0 w-20 mr-0">Lihat</Link>
+                                        <Link to="/laporansearched" className="btn btn-primary mx-auto mt-0 w-20 mr-0">Lihat</Link>
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@ function Laporan() {
                                 <div className="mt-5 ml-auto card p-5 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
                                     <div className="grid grid-cols-2 gap-96 mt-5">
                                         <a className="normal-case text-l text-left">Sedang Dicari Pengunjung</a>
-                                        <button className="btn btn-active btn-primary mx-auto mt-0 w-20 mr-0">Lihat</button>
+                                        <button className="btn btn-primary mx-auto mt-0 w-20 mr-0">Lihat</button>
                                     </div>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@ function Laporan() {
                                 <div className="mt-5 ml-auto card p-5 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
                                     <div className="grid grid-cols-2 gap-96 mt-5">
                                         <a className="normal-case text-l text-left">Kota Pengunjung Terbanyak</a>
-                                        <button className="btn btn-active btn-primary mx-auto mt-0 w-20 mr-0">Lihat</button>
+                                        <button className="btn btn-primary mx-auto mt-0 w-20 mr-0">Lihat</button>
                                     </div>
                                 </div>
                             </div>

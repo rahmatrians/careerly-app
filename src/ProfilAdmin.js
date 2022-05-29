@@ -30,6 +30,8 @@ function ProfilAdmin() {
     const { data, error, count } = await supabase
       .from('user')
       .select('*', { count: 'exact' })
+      .eq('id', storeItem.userId)
+      .single();
 
     setUserData(data);
     setUserCount(count);
@@ -56,7 +58,7 @@ function ProfilAdmin() {
           </div>
           <div className="container mx-auto">
             <div className="flex flex-row pl-10 justify-left">
-              <img src="https://api.lorem.space/image/face?hash=92310" className="profilepic w-24 rounded-full" />
+              <img src={"https://api.lorem.space/image/face?hash=92310"} className="profilepic w-24 rounded-full" />
               <div className="flex flex-col justify-left">
                 <span className="text-lg font-bold px-10 mt-7 text-3xl font-normal">Administrator</span>
                 <span className="text-lg px-10 mt-2 font-bold text-xl">administrator@gmail.com</span>

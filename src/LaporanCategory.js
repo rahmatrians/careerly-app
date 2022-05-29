@@ -17,8 +17,8 @@ function LaporanCategory() {
   const [userCount, setUserCount] = useState("");
   const [feedbackCount, setFeedbackCount] = useState("");
 
-  const [optionsCat, setOptionsCat] = useState({ labels: [] });
-  const [seriesCat, setSeriesCat] = useState([]);
+  const [options, setOptions] = useState({ labels: [] });
+  const [series, setSeries] = useState([]);
 
 
   useEffect(async () => {
@@ -31,19 +31,19 @@ function LaporanCategory() {
       navigate('/login');
     }
 
-    const { data: dataCat, error } = await supabase
+    const { data: data, error } = await supabase
       .rpc('categorycount')
 
-    const optCatTemp = [];
-    const serCatTemp = [];
+    const optTemp = [];
+    const serTemp = [];
 
-    dataCat.map((val, key) => {
-      optCatTemp.push(val.category_name)
-      serCatTemp.push(val.category_total)
+    data.map((val, key) => {
+      optTemp.push(val.category_name)
+      serTemp.push(val.category_total)
     });
-    setOptionsCat({ labels: optCatTemp });
-    setSeriesCat(serCatTemp);
-    setUserData(dataCat);
+    setOptions({ labels: optTemp });
+    setSeries(serTemp);
+    setUserData(data);
   }, [])
 
 
@@ -72,22 +72,24 @@ function LaporanCategory() {
               <div className="grid grid-rows-1 gap-y-4">
                 <div className="mb-2 card p-5 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
                   <div className="">
-                    {/* <div className="donut">
-                      <a className="normal-case text-l text-left">Kategori Paling Dicari</a>
-                      <Chart options={optionsCat} series={seriesCat} type="donut" className="mt-6" width="380" />
-                    </div> */}
+                    <div className="donut">
+                      <a className="normal-case text-l text-left font-bold">Kategori Paling Dicari</a>
+                      <Chart options={options} series={series} type="donut" className="my-8" width="380" />
+                    </div>
 
                     <div class="overflow-x-auto w-full">
                       <table class="table w-full">
                         <thead>
                           <tr>
+                            <th>No.</th>
                             <th>Category Name</th>
-                            <th>Total</th>
+                            <th>Total Pencarian</th>
                           </tr>
                         </thead>
                         <tbody>
-                          {userData.map((val) => (
+                          {userData.map((val, idx) => (
                             <tr>
+                              <td>{idx + 1}</td>
                               <td>{val.category_name}</td>
                               <td><b>{val.category_total} Kali  </b></td>
                             </tr>
@@ -95,6 +97,7 @@ function LaporanCategory() {
                         </tbody>
                         <tfoot>
                           <tr>
+                            <th>No.</th>
                             <th>Category Name</th>
                             <th>Total</th>
                           </tr>
