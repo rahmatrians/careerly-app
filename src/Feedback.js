@@ -51,7 +51,7 @@ function Feedback() {
                     <div className="grid grid-cols-5 gap-4">
                 <div className="col-span-4">
                 <div className="flex flex-row justify-between my-12">
-                                <a className="mt-12 btn btn-ghost normal-case text-3xl font-bold">Laporan</a>
+                                <a className="mt-12 btn btn-ghost normal-case text-3xl font-bold">Feedback</a>
                                 <a className="mt-12 btn btn-ghost normal-case text-xl text-right font-medium">Hi,{storeItem.name}</a>
                             </div>
 
@@ -60,11 +60,11 @@ function Feedback() {
                     {userData.map((val)=> (
                         <div id={val.id} className="card p-8 mb-10 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
                             <div className="avatar">
-                                <div className="w-36">
-                                    <img src={Circle} />
+                                <div className="w-16 rounded-full">
+                                    <img src="https://api.lorem.space/image/face?hash=92310" />
 
                                 </div>
-                                <p className="text-xl font-medium text-[#3F427B] ml-4 mt-2">{val.user_id}</p>
+                                <p className="text-xl font-medium text-[#3F427B] ml-4 mt-2">Farhan</p>
                             </div>
                             <p className="text-sm font-regular text-[#3F427B] mt-6">{val.message}</p>
 
@@ -74,6 +74,70 @@ function Feedback() {
                             </div>
                         </div>
                         ))}
+
+<div  className="card p-8 mb-10 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
+                            <div className="avatar">
+                                <div className="w-16 rounded-full">
+                                    <img src={Circle} />
+
+                                </div>
+                                <p className="text-xl font-medium text-[#3F427B] ml-4 mt-2">Yuli</p>
+                            </div>
+                            <p className="text-sm font-regular text-[#3F427B] mt-6">Makasih aku jadi punya banyak referensi untuk belajar course yang bagus-bagus</p>
+
+                            <div className="flex flex-row justify-between mt-10">
+                                <p className="text-sm font-regular text-[#3F427B] mt-6">19-05-2022</p>
+                                <button className="btn btn-primary">Lihat</button>
+                            </div>
+                        </div>
+
+                        <div  className="card p-8 mb-10 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
+                            <div className="avatar">
+                                <div className="w-16 rounded-full">
+                                <img src="https://api.lorem.space/image/face?hash=92810" />
+
+                                </div>
+                                <p className="text-xl font-medium text-[#3F427B] ml-4 mt-2">Ani</p>
+                            </div>
+                            <p className="text-sm font-regular text-[#3F427B] mt-6">Aku suka sama aplikasi ini, sangat membantuku yg ingin cari kerja</p>
+
+                            <div className="flex flex-row justify-between mt-10">
+                                <p className="text-sm font-regular text-[#3F427B] mt-6">29-05-2022</p>
+                                <button className="btn btn-primary">Lihat</button>
+                            </div>
+                        </div>
+
+                        <div  className="card p-8 mb-10 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
+                            <div className="avatar">
+                                <div className="w-16 rounded-full">
+                                <img src="https://api.lorem.space/image/face?hash=91810" />
+
+                                </div>
+                                <p className="text-xl font-medium text-[#3F427B] ml-4 mt-2">Nurul</p>
+                            </div>
+                            <p className="text-sm font-regular text-[#3F427B] mt-6">Beruntung bisa tahu aplikasi keren ini!!</p>
+
+                            <div className="flex flex-row justify-between mt-10">
+                                <p className="text-sm font-regular text-[#3F427B] mt-6">17-05-2022</p>
+                                <button className="btn btn-primary">Lihat</button>
+                            </div>
+                        </div>
+
+                        <div  className="card p-8 mb-10 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
+                            <div className="avatar">
+                                <div className="w-16 rounded-full">
+                                <img src="https://api.lorem.space/image/face?hash=96221" />
+
+                                </div>
+                                <p className="text-xl font-medium text-[#3F427B] ml-4 mt-2">Andri</p>
+                            </div>
+                            <p className="text-sm font-regular text-[#3F427B] mt-6">Semoga semakin berkembang terus aplikasinya!</p>
+
+                            <div className="flex flex-row justify-between mt-10">
+                                <p className="text-sm font-regular text-[#3F427B] mt-6">22-05-2022</p>
+                                <button className="btn btn-primary">Lihat</button>
+                            </div>
+                        </div>
 
                     </div>
                 </div>

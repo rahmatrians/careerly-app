@@ -51,7 +51,7 @@ function ProfilAdmin() {
                     <div className="grid grid-cols-5 gap-4">
                     <div className="col-span-4">
                     <div className="flex flex-row justify-between my-12">
-                                <a className="mt-12 btn btn-ghost normal-case text-3xl font-bold">Laporan</a>
+                                <a className="mt-12 btn btn-ghost normal-case text-3xl font-bold">Profile</a>
                                 <a className="mt-12 btn btn-ghost normal-case text-xl text-right font-medium">Hi,{storeItem.name}</a>
                             </div>
                             <div className="grid grid-cols-2 gap-x-10 mt-12">
