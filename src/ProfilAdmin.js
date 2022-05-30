@@ -57,13 +57,15 @@ function ProfilAdmin() {
                             <div className="grid grid-cols-2 gap-x-10 mt-12">
           </div>
           <div className="container mx-auto">
-            <div className="flex flex-row pl-10 justify-left">
-              <img src={"https://api.lorem.space/image/face?hash=92310"} className="profilepic w-24 rounded-full" />
-              <div className="flex flex-col justify-left">
+            <div className="flex flex-row pl-10 place-content-between justify-left">
+              <div className="flex flex-row justify-left">
+              <img src={"https://api.lorem.space/image/face?hash=92310"} className="profilepic rounded-full" />
+              <div className="flex flex-col">
                 <span className="text-lg font-bold px-10 mt-7 text-3xl font-normal">Administrator</span>
                 <span className="text-lg px-10 mt-2 font-bold text-xl">administrator@gmail.com</span>
               </div>
-              <div className="flex row ml-60 mt-2">
+              </div>
+              <div className="flex flex-row mt-2">
                 <button className="btn btn-md md:btn-md btn-primary text-white w-5/4 mt-7">Ubah Profil</button>
               </div>
             </div>
