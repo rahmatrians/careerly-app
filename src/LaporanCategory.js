@@ -57,11 +57,11 @@ function LaporanCategory() {
   return (
     <>
       <div className='grid grid-cols-12'>
-        <div className="relative col-span-3">
+        <div className="relative col-span-4">
           <SideNav data="2" />
         </div>
 
-        <section className="relative col-span-9">
+        <section className="relative col-span-8">
           <div className="grid grid-cols-5 gap-4">
             <div className="col-span-4">
               <div className="flex flex-row justify-between my-12">

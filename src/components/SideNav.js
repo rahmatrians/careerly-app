@@ -13,8 +13,8 @@ function SideNav(data) {
 
     return (
         <>
-            <section className='fixed'>
-                <div className="relative card rounded-none h-screen bg-white w-96 drop-shadow-[0_35px_35px_rgba(168,170,225,0.30)] grid content-between">
+            <section className=''>
+                <div className=" card rounded-none h-screen bg-white w-96 drop-shadow-[0_35px_35px_rgba(168,170,225,0.30)] grid content-between">
                     <div className="mx-12">
                         <a className="mt-12 btn btn-ghost normal-case text-3xl font-bold">Careerly</a>
                         <div className="mt-24">

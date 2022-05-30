@@ -42,11 +42,11 @@ function ProfilAdmin() {
   return (
     <>
             <div className='grid grid-cols-12'>
-                <div className="relative col-span-3">
+                <div className="relative col-span-4">
                     <SideNav data="3" />
                 </div>
 
-                <section className="col-span-9">
+                <section className="col-span-8">
         <div className="col-span-4">
                     <div className="grid grid-cols-5 gap-4">
                     <div className="col-span-4">
