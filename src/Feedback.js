@@ -60,7 +60,7 @@ function Feedback() {
                     {userData.map((val)=> (
                         <div id={val.id} className="card p-8 mb-10 bg-white drop-shadow-[0_35px_35px_rgba(168,170,225,0.15)]">
                             <div className="avatar">
-                                <div className="w-10 rounded">
+                                <div className="rounded">
                                     <img src={Circle} />
 
                                 </div>
