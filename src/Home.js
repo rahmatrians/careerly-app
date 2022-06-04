@@ -44,6 +44,17 @@ function Home() {
   }
 
   const history = async (val) => {
+
+    const session = supabase.auth.session();
+    console.log(storeItem);
+    if (session !== null) {
+      storeItem.token != session.access_token && navigate('/login');
+      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
+    } else {
+      localStorage.clear();
+      navigate('/login');
+    }
+
     const { data, error } = await supabase
       .from('history')
       .insert([

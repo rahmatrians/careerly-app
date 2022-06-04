@@ -60,7 +60,7 @@ function Course() {
     axios(url)
       .then(response => {
         const html = response.data
-        setGetData(html);
+        setGetData(html); 
       })
       
       const { data, error } = await supabase
