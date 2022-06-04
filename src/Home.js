@@ -47,29 +47,31 @@ function Home() {
 
     const session = supabase.auth.session();
     console.log(storeItem);
-    if (session !== null) {
-      storeItem.token != session.access_token && navigate('/login');
-      session.access_token !== null && storeItem.token == session.access_token ? console.log('') : localStorage.clear();
-    } else {
+    if (session == null) {
       localStorage.clear();
       navigate('/login');
-    }
-
-    const { data, error } = await supabase
-      .from('history')
-      .insert([
-        {
-          name: val.id,
-          user_id: storeItem.userId,
-          category_id: val.id,
-        }
-      ])
-
-
-    if (error) {
-      console.log(error.message);
     } else {
-      navigate('/' + val.route);
+      storeItem.token != session.access_token && navigate('/login');
+      if (session.access_token !== null && storeItem.token == session.access_token) {
+        const { data, error } = await supabase
+          .from('history')
+          .insert([
+            {
+              name: val.id,
+              user_id: storeItem.userId,
+              category_id: val.id,
+            }
+          ])
+
+        if (error) {
+          console.log(error.message);
+        } else {
+          navigate('/' + val.route);
+        }
+
+      } else {
+        localStorage.clear();
+      }
     }
   }
 
